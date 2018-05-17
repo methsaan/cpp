@@ -47,7 +47,7 @@ int main()
 		cout << "Enter second number: ";
 		cin >> s;
 		bool numfalse2 = logic();
-		if (numfalse2 = false) {
+		if (numfalse2 == false) {
 			break;
 		}
 		if (oper == "Hypotenuse") {
@@ -61,6 +61,7 @@ int main()
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
 			double third = 1 / 3;
+			cout << third << endl;
 			squart = pow(f, third);
 			cout << squart << endl;
 		}
