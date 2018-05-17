@@ -1,13 +1,19 @@
 #include<iostream>
 #include<cmath>
 #include<string>
+#include<fstream>
 
 using namespace std;
 void logic() {
 	if (cin.fail()){
                cin.clear();
                cout << "Invalid number.\a\n";
-	       exit(0);
+	       throw exception();
+	}
+}
+void operror(string x) {
+	if (x != "hypotenuse") && (x != "square_root") && (x != "cube_root") {
+		cout << "Invalid operator.\n";
 	}
 }
 int main()
@@ -22,10 +28,7 @@ int main()
 	cout << "Enter operator: ";
 	string oper;
 	cin >> oper;
-	if (oper != "hypotenuse" && oper != "square_root" && oper != "cube_root") {
- 		cout << "Invalid operator.\a\n";
-		exit(0);
-	}
+	operror(oper);
 	cout << "Enter first number: ";
 	cin >> f;
 	logic();
@@ -42,9 +45,5 @@ int main()
 		double third = 1 / 3;
 		squart = pow(f, third);
 		cout << squart << endl;
-	}void operror() {
-		if (oper != "hypotenuse" && oper != "square_root" && oper != "cube_root") {
-			cout << "Invalid operator.\n";
-		}
 	}
 }
