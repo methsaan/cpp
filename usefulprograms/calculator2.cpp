@@ -8,7 +8,7 @@ bool logic() {
 	if (cin.fail()){
                 cin.clear();
         	cout << "Invalid number.\a\n";
-		bool running = false;
+		running = false;
 	}
 	return running;
 }
@@ -16,7 +16,7 @@ bool operror(string x) {
 	bool running = true;
 	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root")) {
 		cout << "Invalid operator.\n";
-		bool running = false;
+		running = false;
 	}
 	return running;
 }
@@ -44,7 +44,7 @@ int main()
 		if (numfalse1 == false){
 			break;
 		}
-		cout << "Enter second number: ";
+		cout << "Enter second number (if needed): ";
 		cin >> s;
 		bool numfalse2 = logic();
 		if (numfalse2 == false) {
@@ -60,9 +60,7 @@ int main()
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
-			double third = 1 / 3;
-			cout << third << endl;
-			squart = pow(f, third);
+			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
 		}
 	}
