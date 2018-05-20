@@ -48,9 +48,13 @@ int main()
 		cin >> s;
 		bool numfalse2 = logic();
 		if (numfalse2 == false) {
-			break;
+			if (oper == "hypotenuse"){
+				break;
+			}else {
+				cin.ignore();
+			}
 		}
-		if (oper == "Hypotenuse") {
+		if (oper == "hypotenuse") {
 			double fsqr = f * f;
 			double ssqr = s * s;
 			double sqrsum = fsqr + fsqr;
@@ -60,6 +64,9 @@ int main()
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
+			if (cin.fail()) {
+				cin.ignore();
+			}
 			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
 		}
