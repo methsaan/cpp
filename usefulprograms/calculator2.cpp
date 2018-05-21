@@ -6,21 +6,8 @@ using namespace std;
 double f;
 double s;
 string oper;
-bool logic() {
-	bool running = true;
-	if (!(cin>>f)){
-                cin.clear();
-        	cout << "Invalid number.\a\n";
-		running = false;
-	}
-	if ((!(cin>>s)) && ((oper == "square_root") || (oper == "cube_root"))) {
-		cin.clear();
-		running = true;
-	}
-	return running;
-}
+bool running;
 bool operror(string x) {
-	bool running = true;
 	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root")) {
 		cout << "Invalid operator.\n";
 		running = false;
@@ -47,20 +34,8 @@ int main()
 		}
 		cout << "Enter first number: ";
 		cin >> f;
-		bool numfalse1 = logic();
-		if (numfalse1 == false){
-			break;
-		}
 		cout << "Enter second number (if needed): ";
 		cin >> s;
-		bool numfalse2 = logic();
-		if (numfalse2 == false) {
-			if (oper == "hypotenuse"){
-				break;
-			}else {
-				cin.ignore();
-			}
-		}
 		if (oper == "hypotenuse") {
 			double fsqr = f * f;
 			double ssqr = s * s;
@@ -68,11 +43,15 @@ int main()
 			squart = pow(sqrsum, 0.5);
 			cout << squart << endl;
 		}else if (oper == "square_root") {
-			bool secfalsesqu = logic();
+			if (!(cin>>s)) {
+				cin.ignore(10, "\n");
+			}
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
-			bool secfalsecub = logic();
+			if (!(cin>>s)) {
+				cin.ignore(10, "\n");
+			}
 			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
 		}
