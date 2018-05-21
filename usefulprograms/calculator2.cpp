@@ -3,12 +3,19 @@
 #include<string>
 
 using namespace std;
+double f;
+double s;
+string oper;
 bool logic() {
 	bool running = true;
-	if (cin.fail()){
+	if (!(cin>>f)){
                 cin.clear();
         	cout << "Invalid number.\a\n";
 		running = false;
+	}
+	if ((!(cin>>s)) && ((oper == "square_root") || (oper == "cube_root"))) {
+		cin.clear();
+		running = true;
 	}
 	return running;
 }
@@ -61,11 +68,16 @@ int main()
 			squart = pow(sqrsum, 0.5);
 			cout << squart << endl;
 		}else if (oper == "square_root") {
+			bool secfalsesqu = logic();
+			if (secfalsesqu == true) {
+				continue;
+			}
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
-			if (cin.fail()) {
-				cin.ignore();
+			bool secfalsecub = logic();
+			if (secfalsecub == true) {
+				continue;
 			}
 			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
