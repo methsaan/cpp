@@ -7,7 +7,7 @@ double f;
 double s;
 string oper;
 bool running;
-bool operror(string x) {
+bool error(string x) {
 	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root")) {
 		cout << "Invalid operator.\n";
 		running = false;
@@ -24,18 +24,37 @@ int main()
 		cout << "################################################\n";
 		cout << "########### Welcome to calculator 2 ############\n";
 		cout << "################################################\n";
-		cout << "Options: hypotenuse, square_root, cube_root\n";
+		cout << "Options: hypotenuse, square_root, cube_root, quit\n";
 		cout << "Enter operator: ";
 		string oper;
 		cin >> oper;
-		bool opbreak = operror(oper);
-		if (opbreak == false){
+		bool not_errored = error(oper);
+		if (not_errored == false) && (oper != "quit") {
 			break;
 		}
 		cout << "Enter first number: ";
 		cin >> f;
+		if (cin.fail()) {
+			cin.clear();
+			cout << "Invalid operator.\n";
+			break;
+		}
 		cout << "Enter second number (if needed): ";
 		cin >> s;
+		if (cin.fail()) {
+			if (oper == "hypotenuse") {
+				cin.clear();
+				cout << "Invalid operator. \n";
+				break;
+			}else {
+				cin.clear();
+				continue;
+			}
+		}
+		if (oper == "quit") {
+			cout << "quitting ...\n";
+			break;
+		}
 		if (oper == "hypotenuse") {
 			double fsqr = f * f;
 			double ssqr = s * s;
@@ -43,15 +62,9 @@ int main()
 			squart = pow(sqrsum, 0.5);
 			cout << squart << endl;
 		}else if (oper == "square_root") {
-			if (!(cin>>s)) {
-				cin.ignore(10, "\n");
-			}
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
-			if (!(cin>>s)) {
-				cin.ignore(10, "\n");
-			}
 			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
 		}
