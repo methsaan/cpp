@@ -69,16 +69,10 @@ int main()
 			cout << squart << endl;
 		}else if (oper == "square_root") {
 			bool secfalsesqu = logic();
-			if (secfalsesqu == true) {
-				continue;
-			}
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
 			bool secfalsecub = logic();
-			if (secfalsecub == true) {
-				continue;
-			}
 			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
 			cout << squart << endl;
 		}
