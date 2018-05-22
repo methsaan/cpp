@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include<string>
+#include<ctime>
 
 using namespace std;
 double f;
@@ -29,9 +30,15 @@ int main()
 		string oper;
 		cin >> oper;
 		bool not_errored = error(oper);
-		if (not_errored == false) && (oper != "quit") {
+		if ((not_errored == false) && (oper != "quit")) {
 			break;
 		}
+		if (oper == "quit") {
+                	cout << "quitting .";
+			sleep(1000);
+                	break;
+                }
+
 		cout << "Enter first number: ";
 		cin >> f;
 		if (cin.fail()) {
@@ -50,10 +57,6 @@ int main()
 				cin.clear();
 				continue;
 			}
-		}
-		if (oper == "quit") {
-			cout << "quitting ...\n";
-			break;
 		}
 		if (oper == "hypotenuse") {
 			double fsqr = f * f;
