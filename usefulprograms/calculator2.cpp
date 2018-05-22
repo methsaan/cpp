@@ -9,7 +9,8 @@ double s;
 string oper;
 bool running;
 bool error(string x) {
-	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root")) {
+	running = true;
+	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root") && (x != "quit")) {
 		cout << "Invalid operator.\n";
 		running = false;
 	}
@@ -34,8 +35,7 @@ int main()
 			break;
 		}
 		if (oper == "quit") {
-                	cout << "quitting .";
-			sleep(1000);
+                	cout << "quitting ..." << endl;
                 	break;
                 }
 
@@ -54,8 +54,9 @@ int main()
 				cout << "Invalid operator. \n";
 				break;
 			}else {
-				cin.clear();
-				continue;
+				if (s == '\n'){
+					continue;
+				}
 			}
 		}
 		if (oper == "hypotenuse") {
