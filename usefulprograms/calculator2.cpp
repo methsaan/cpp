@@ -54,9 +54,8 @@ int main()
 				cout << "Invalid operator. \n";
 				break;
 			}else {
-				if (s == '\n'){
-					continue;
-				}
+				cin.ignore(10, '\n');
+				cin.get();
 			}
 		}
 		if (oper == "hypotenuse") {
