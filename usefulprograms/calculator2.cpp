@@ -11,7 +11,7 @@ bool running;
 bool error(string x) {
 	running = true;
 	if ((x != "hypotenuse") && (x != "square_root") && (x != "cube_root") && (x != "quit")) {
-		cout << "Invalid operator.\n";
+		cout << "\nInvalid operator.\n";
 		running = false;
 	}
 	return running;
@@ -43,7 +43,7 @@ int main()
 		cin >> f;
 		if (cin.fail()) {
 			cin.clear();
-			cout << "Invalid operator.\n";
+			cout << "\nInvalid operator.\n";
 			break;
 		}
 		cout << "Enter second number (if needed): ";
