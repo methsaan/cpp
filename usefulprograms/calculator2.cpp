@@ -58,10 +58,7 @@ int main()
 			}
 		}
 		if (oper == "hypotenuse") {
-			double fsqr = f * f;
-			double ssqr = s * s;
-			double sqrsum = fsqr + fsqr;
-			squart = pow(sqrsum, 0.5);
+			squart = pow(f*f+s*s, 0.5);
 			cout << squart << endl;
 		}else if (oper == "square_root") {
 			squart = pow(f, 0.5);
