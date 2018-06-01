@@ -41,27 +41,49 @@ int main() {
 					}else if (op == "/") {
 						cout << f/s << endl;
 					}
-				}else if (calcCommand == "unit"){
-					cout << "T:  \b";
+				}else if (calcCommand == "len"){
+					cout << "T: ";
 					cin >> type;
 					if (type == "mtoc") {
-						cout << "CM: ";
-						cin >> cm;
-						cout << cm * 2.54 << endl;
-					}else if (type == "ctom"){
 						cout << "IN: ";
+						cin >> cm;
+						cout << cm * 2.54 << "in" << endl;
+					}else if (type == "ctom"){
+						cout << "CM: ";
 						cin >> in;
-						cout << in / 2.54 << endl;
+						cout << in / 2.54 << "cm" << endl;
 					}
+				}else if (calcCommand == "opt") {
+					cout << "cap help len opt quit standard weight" << endl;
+				}else if (calcCommand.substr(0,4) == "help") {
+					if (calcCommand.substr(5,calcCommand.length()) == "len") {
+						cout << "LEN:\nDESCRIPTION:\n\b";
+						cout << "\tConvert metric capacity to customary or customary to metric.\n";
+						cout << "COMMANDS: \n";
+						cout << "\tmtoc: Metric to customary\n";
+						cout << "\tctom: Customary to metric\n";
+					}else if (calcCommand.substr(5,calcCommand.length()) == "opt") {
+						cout << "OPT:\nDESCRIPTION\n";
+						cout << "\tList all calc commands\n";
+					}
+				}else if (calcCommand == "") {
+					continue;
 				}else {
 					cout << calcCommand << ": Not a calculator command\n";
 				}
 			}
-		}else if (nextCommand.substr(0,5) == "print") {
-			cout << nextCommand.substr(6,nextCommand.length()) << endl;
+		}else if (nextCommand.substr(0,6) == "printw") {
+			cout << nextCommand.substr(7,nextCommand.length()) << endl;
+			if (nextCommand.find(" ") == true) {
+				cout << "Invalid Syntax: printw prints 1 word\n";
+			}
+			cout << nextCommand.substr(7,nextCommand.length()) << endl;
+		}else if (nextCommand.substr(0,4) == "help") {
+			if (nextCommand.substr
 		}
 		else {
 			cout << "Unexpected token at " << nextCommand << "\n";
+			cout << "                    ^\n";
 		}
 	}
 	return 0;
