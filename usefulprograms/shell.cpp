@@ -56,8 +56,9 @@ int main() {
 				}else if (calcCommand == "opt") {
 					cout << "cap help len opt quit standard weight" << endl;
 				}else if (calcCommand.substr(0,4) == "help") {
-					if (calcCommand.substr(5,calcCommand.length()) == "len") {
-						cout << "LEN:\nDESCRIPTION:\n\b";
+					string whatToHelpWith = calcCommand.substr(5, calcCommand.length());
+					if ((whatToHelpWith == "len")||(whatToHelpWith == "weight")||(whatToHelpWith == "cap")) {
+						cout << whatToHelpWith << "\nDESCRIPTION:\n\b";
 						cout << "\tConvert metric capacity to customary or customary to metric.\n";
 						cout << "COMMANDS: \n";
 						cout << "\tmtoc: Metric to customary\n";
