@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#include<sstream>
+#include<algorithm>
 
 using namespace std;
 int main() {
@@ -57,6 +57,7 @@ int main() {
 					cout << "cap help len opt quit standard weight" << endl;
 				}else if (calcCommand.substr(0,4) == "help") {
 					string whatToHelpWith = calcCommand.substr(5, calcCommand.length());
+					transform(whatToHelpWith.begin(), whatToHelpWith.end(), toupper);
 					if ((whatToHelpWith == "len")||(whatToHelpWith == "weight")||(whatToHelpWith == "cap")) {
 						cout << whatToHelpWith << "\nDESCRIPTION:\n\b";
 						cout << "\tConvert metric capacity to customary or customary to metric.\n";
@@ -75,12 +76,12 @@ int main() {
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
-			if (nextCommand.find(" ") == true) {
+			if (nextCommand.find("")) {
 				cout << "Invalid Syntax: printw prints 1 word\n";
 			}
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 		}else if (nextCommand.substr(0,4) == "help") {
-			if (nextCommand.substr
+			if (nextCommand.substr(5, nextCommand.length()) == "fasf"){}
 		}
 		else {
 			cout << "Unexpected token at " << nextCommand << "\n";
