@@ -14,14 +14,14 @@ int main() {
 	double in;
 	string type;
 	while (true) {
-		cout << "MHOME/shell/~$ ";
+		cout << "home/~$ ";
 		cin >> nextCommand;
 		if (nextCommand == "exit") {
 			break;
 		}
 		else if (nextCommand == "calc") {
 			while (true) {
-				cout << "MHOME/shell/calc/~$ ";
+				cout << "home/calc/~$ ";
 				cin >> calcCommand;
 				if (calcCommand == "quit") {
 					break;
@@ -55,8 +55,8 @@ int main() {
 					}
 				}else if (calcCommand == "opt") {
 					cout << "cap help len opt quit standard weight" << endl;
-				}else if (calcCommand.substr(0,4) == "help") {
-					string whatToHelpWith = calcCommand.substr(5, calcCommand.length());
+				}else if (calcCommand.substr(0,3) == "man") {
+					string whatToHelpWith = calcCommand.substr(4, calcCommand.length());
 					if ((whatToHelpWith == "len")||(whatToHelpWith == "weight")||(whatToHelpWith == "cap")) {
 						cout << whatToHelpWith << "\nDESCRIPTION:\n\b";
 						cout << "\tConvert metric capacity to customary or customary to metric.\n";
@@ -70,21 +70,21 @@ int main() {
 				}else if (calcCommand == "") {
 					continue;
 				}else {
-					cout << calcCommand << ": Not a calculator command\n";
+					cout << "calc: " << calcCommand << ": Not a calculator command\n";
 				}
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 			if (nextCommand.find("")) {
-				cout << "Invalid Syntax: printw prints 1 word\n";
+				cout << "Invalid Syn: printw prints 1 word\n";
 			}
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 		}else if (nextCommand.substr(0,4) == "help") {
 			if (nextCommand.substr(5, nextCommand.length()) == "fasf"){}
 		}
 		else {
-			cout << "Unexpected token at " << nextCommand << "\n";
-			cout << "                    ^\n";
+			cout << "home: " << nextCommand << ": no such command\n";
+			cout << "           ^\n";
 		}
 	}
 	return 0;
