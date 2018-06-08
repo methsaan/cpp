@@ -66,6 +66,8 @@ int main() {
 					}else if (calcCommand.substr(5,calcCommand.length()) == "opt") {
 						cout << "OPT:\nDESCRIPTION\n";
 						cout << "\tList all calc commands\n";
+					}else {
+						cout << "No manual entry for " << whatToHelpWith << endl;
 					}
 				}else if (calcCommand == "") {
 					continue;
@@ -74,17 +76,30 @@ int main() {
 				}
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
+			cout << nextCommand.length() << endl;
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 			if (nextCommand.find("")) {
-				cout << "Invalid Syn: printw prints 1 word\n";
+				cout << "Invalid syntax: printw prints 1 word\n";
 			}
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 		}else if (nextCommand.substr(0,4) == "help") {
-			if (nextCommand.substr(5, nextCommand.length()) == "fasf"){}
+			if (nextCommand.substr(5, nextCommand.length()) == "printw"){
+				cout << "printw\n";
+				cout << "DESCRIPTION:\n";
+				cout << "\tprint out a word without spaces." << endl;
+			}else if (nextCommand.substr(5,nextCommand.length()) == "exit"){
+				cout << "exit";
+				cout << "DESCRIPTION" << endl;
+				cout << "\tExits the shell\n";
+			}else {
+				cout << "No manual entry for " << nextCommand.substr(5,nextCommand.length()) << endl;
+			}
+		}else if (nextCommand == "opt") {
+			cout << "calc printw help exit\n" << endl;
 		}
 		else {
 			cout << "home: " << nextCommand << ": no such command\n";
-			cout << "           ^\n";
+			cout << "      ^\n";
 		}
 	}
 	return 0;
