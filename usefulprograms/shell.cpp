@@ -78,7 +78,7 @@ int main() {
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
-			if (nextCommand.find(" ")) {
+			if (nextCommand.find("  ")) {
 				cout << "Invalid syntax: printw prints 1 word\n";
 			}
 		}else if (nextCommand.substr(0,4) == "help") {
