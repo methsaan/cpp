@@ -47,11 +47,11 @@ int main() {
 					if (type == "mtoc") {
 						cout << "CM: ";
 						cin >> cm;
-						cout << cm * 2.54 << "in" << endl;
+						cout << cm / 2.54 << "in" << endl;
 					}else if (type == "ctom"){
 						cout << "IN: ";
 						cin >> in;
-						cout << in / 2.54 << "cm" << endl;
+						cout << in * 2.54 << "cm" << endl;
 					}
 				}else if (calcCommand == "opt") {
 					cout << "cap help len opt quit standard weight" << endl;
@@ -73,6 +73,7 @@ int main() {
 					continue;
 				}else {
 					cout << "calc: " << calcCommand << ": Not a calculator command\n";
+					cout << "           ^" << endl;
 				}
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
