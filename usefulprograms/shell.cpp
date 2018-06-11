@@ -77,7 +77,6 @@ int main() {
 				}
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
-			getline(cin, nextCommand);
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
 			if (nextCommand.find("")) {
 				cout << "Invalid syntax: printw prints 1 word\n";
