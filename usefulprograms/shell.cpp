@@ -45,11 +45,11 @@ int main() {
 					cout << "T: ";
 					cin >> type;
 					if (type == "mtoc") {
-						cout << "IN: ";
+						cout << "CM: ";
 						cin >> cm;
 						cout << cm * 2.54 << "in" << endl;
 					}else if (type == "ctom"){
-						cout << "CM: ";
+						cout << "IN: ";
 						cin >> in;
 						cout << in / 2.54 << "cm" << endl;
 					}
@@ -78,7 +78,7 @@ int main() {
 		}else if (nextCommand.substr(0,6) == "printw") {
 			cout << nextCommand.length() << endl;
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
-			if (nextCommand.find("")) {
+			if (nextCommand.find(" ")) {
 				cout << "Invalid syntax: printw prints 1 word\n";
 			}
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
