@@ -46,7 +46,7 @@ int main() {
 					cout << "T: " << flush;
 					cin >> type;
 					if (type == "mtoc") {
-						cout << "CM: " flush;
+						cout << "CM: " << flush;
 						cin >> cm;
 						cout << cm / 2.54 << "in" << flush << endl;
 					}else if (type == "ctom"){
@@ -89,7 +89,7 @@ int main() {
 				cout << "Invalid syntax: printw prints 1 word\n" << flush;
 			}
 		}else if (nextCommand.substr(0,4) == "help") {
-			if (nexCommand == "help"){
+			if (nextCommand == "help"){
 				cout << "help: missing 1 argument\n" << flush;
 			}
 			if (nextCommand.substr(5, nextCommand.length()) == "printw"){
