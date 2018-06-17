@@ -87,10 +87,11 @@ int main() {
 			if (nextCommand.find(" ")) {
 				cout << "Invalid syntax: printw prints 1 word\n" << flush;
 			}
+		if (nextCommand == "help"){
+			cout << "help: missing 1 argument\n" << flush;
+			cout << "Help options: printw, exit, calc, opt\n";
+		}
 		}else if (nextCommand.substr(0,4) == "help") {
-			if (nextCommand == "help"){
-				cout << "help: missing 1 argument\n" << flush;
-			}
 			if (nextCommand.substr(5, nextCommand.length()) == "printw"){
 				cout << "printw\n" << flush;
 				cout << "DESCRIPTION:\n" << flush;
