@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<algorithm>
+#include<cstdlib>
 
 using namespace std;
 int main() {
@@ -78,7 +79,7 @@ int main() {
 			}
 		}else if (nextCommand.substr(0,6) == "printw") {
 			cout << nextCommand.substr(7,nextCommand.length()) << endl;
-			if (nextCommand.find("")) {
+			if (nextCommand.find(" ")) {
 				cout << "Invalid syntax: printw prints 1 word\n";
 			}
 		}else if (nextCommand.substr(0,4) == "help") {
@@ -87,9 +88,13 @@ int main() {
 				cout << "DESCRIPTION:\n";
 				cout << "\tprint out a word without spaces." << endl;
 			}else if (nextCommand.substr(5,nextCommand.length()) == "exit"){
-				cout << "exit";
-				cout << "DESCRIPTION" << endl;
+				cout << "exit\n";
+				cout << "DESCRIPTION:" << endl;
 				cout << "\tExits the shell\n";
+			}else if (nextCommand.substr(5, nextCommand.length()) == "calc"){
+				cout << "calc\n";
+				cout << "DESCRIPTION:\n";
+				cout << "\tCalculator shell";
 			}else {
 				cout << "No manual entry for " << nextCommand.substr(5,nextCommand.length()) << endl;
 			}
