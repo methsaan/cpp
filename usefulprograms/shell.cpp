@@ -95,6 +95,8 @@ int main() {
 			}
 		}else if (nextCommand == "opt") {
 			cout << "calc printw help exit\n" << endl;
+		}else if (nextCommand == "clear") {
+			system("CLS");
 		}
 		else {
 			cout << "home: " << nextCommand << ": no such command\n";
