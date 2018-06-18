@@ -4,10 +4,8 @@
 #include<ctime>
 #include<cstdlib>
 #include<cstring>
-#include "boost/algorithm/string.hpp"
 
 using namespace std;
-using namespace boost;
 
 int main(){
 	string word;
@@ -17,10 +15,10 @@ int main(){
 	string letter = "";
 	while (true){
 		cout << "Enter a character: ";
-		if (contains(word, letter) == true){
-			cout << "Yes";
+		if (word.find(letter)){
+			cout << "Yes\n";
 		}else{
-			cout << "no";
+			cout << "no\n";
 		}
 	}
 	return 0;
