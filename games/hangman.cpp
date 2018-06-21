@@ -3,11 +3,12 @@
 #include<cmath>
 #include<ctime>
 #include<cstdlib>
+#include<array>
 
 using namespace std;
 
 void printarray(string arrayf[], string join){
-	for (int x = 0; x < sizeof(arrayf); x++){
+	for (int x = 0; x < arrayf->size(); x++){
 		cout << arrayf[x] << join;
 	}
 }
@@ -24,7 +25,7 @@ int main(){
 	}
 	string strikes[word.length()+2];
 	strikes[0] = "{";
-	for (int x = 1; x < word.length()+1; x++){
+	for (int x = 1; x < floor(((word.length()/5)*3) + 0.5); x++){
 		strikes[x] = ".";
 	}
 	strikes[word.length()+2] = "}";
