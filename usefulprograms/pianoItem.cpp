@@ -3,10 +3,11 @@
 #include<cstdlib>
 #include<ctime>
 
+using namespace std;
 int main(){
 	srand(time(0));
 	string songOrTech[] = {"song", "tech"};
-	if (songsOrTech[rand()%2] == "song"){
+	if (songOrTech[rand()%2] == "song"){
 		string songs[] = {"Toccatina", "Etude in Ab Major", "Little Prelude in E Minor", "Rondo in C Major", "Happy Time Jazz"};
 		cout << songs[rand()%5] << endl;
 	}else{
@@ -26,7 +27,7 @@ int main(){
 			cout << tontriads[rand()%8] << " tonic triad\n";
 		}else if (type == "dom7chord"){
 			string hands[] = {"left", "right"};
-			string dom7chords = {"D7", "B7", "F#7", "Ab7"};
+			string dom7chords[] = {"D7", "B7", "F#7", "Ab7"};
 			cout << dom7chords[rand()%4] << " chord with " << hands[rand()%2] << " hand\n";
 		}else if (type == "dim7chord"){
 			string hands[] = {"left", "right"};
