@@ -19,7 +19,8 @@ int main(){
 	cin >> word;
 	system("clear");
 	string letter = "";
-	string progress[word.length];
+	cout << word.length;
+	/*string progress[word.length];
 	for (int x = 0; x < word.length; x++){
 		progress[x] = "_";
 	}
@@ -49,6 +50,6 @@ int main(){
 			}
 		}
 		printarray(progress, " ");
-	}
+	}*/
 	return 0;
 }
