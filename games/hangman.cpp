@@ -19,16 +19,16 @@ int main(){
 	cin >> word;
 	system("clear");
 	string letter = "";
-	string progress[word.length()];
-	for (int x = 0; x < word.length(); x++){
+	string progress[word.length];
+	for (int x = 0; x < word.length; x++){
 		progress[x] = "_";
 	}
-	string strikes[word.length()+2];
+	string strikes[word.length+2];
 	strikes[0] = "{";
-	for (int x = 1; x < floor(((word.length()/5)*3) + 0.5); x++){
+	for (int x = 1; x < floor(((word.length/5)*3) + 0.5); x++){
 		strikes[x] = ".";
 	}
-	strikes[word.length()+2] = "}";
+	strikes[word.length+2] = "}";
 	int strike = 0;
 	while (true){
 		cout << "Enter a character: ";
