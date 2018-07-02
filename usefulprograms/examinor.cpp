@@ -8,6 +8,7 @@
 using namespace std;
 int main(){
 	srand(time(0));
+	string solidOrBlocked[] = {"solid", "broken"};
 	string majMinScales[] = {"G major", "G harmonic minor", "G melodic minor", "E major", "E harmonic minor", "E melodic minor", "B major", "B harmonic minor", "B melodic minor", "Db major", "C# harmonic minor", "C# melodic minor"};
 	string chromScales[] = {"Starting on C#", "Starting on E"};
 	string formulaPatterns[] = {"E major", "E minor"};
@@ -22,15 +23,16 @@ int main(){
 	cout << "FORMULA PATTERN SCALES: \n";
 	cout << "\t" << formulaPatterns[rand()%2] << endl;
 	cout << "TONIC TRIADS: \n";
-	cout << "\t" << tonicTriads[rand()%8] << tonicTriads[rand()%8] << endl;
+	cout << "\t" << tonicTriads[rand()%8] << " " << solidOrBlocked[rand()%2] << " and " << tonicTriads[rand()%8] << " " << solidOrBlocked[rand()%2] << endl;
 	cout << "DOMINANT SEVENTH CHORDS: \n";
-	cout << "\t" << dominantSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
+	cout << "\t" << dominantSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << " hand " << " and " << dominantSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << endl;
 	cout << "DIMISHED SEVENTH CHORDS: \n";
-	cout << "\t" << diminishedSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
+	cout << "\t" << diminishedSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << " hand " << " and " << diminishedSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << endl;
 	cout << "TONIC ARPEGGIOS:\n";
 	cout << "\t" << tonicTriads[rand()%8] << " with " << leftOrRight[rand()%2] << " hand and " << tonicTriads[rand()%8] << " with " << leftOrRight[rand()%2] << " hand\n";
 	cout << "DOMINANT SEVENTH ARPEGGIOS:\n";
 	cout << "\t" << dominantSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
 	cout << "DIMINISHED SEVENTH ARPEGGIOS:\n";
 	cout << "\t" << diminishedSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
+	cout << "Toccatina\nEtude in Ab Major\nLittle Prelude in E minor\nRondo in C Major\nHappy Time Jazz\n";
 }
