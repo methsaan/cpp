@@ -18,7 +18,7 @@ int main(){
 	cout << "Enter a word: ";
 	cin >> word;
 	system("clear");
-	string letter("$");
+	string letter = "eq";
 	string progress[word.length()];
 	for (int x = 0; x < word.length(); x++){
 		progress[x] = "_";
