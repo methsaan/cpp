@@ -7,14 +7,16 @@
 
 using namespace std;
 
-void printarray(string arrayf[], string join){
-	for (int x = 0; x < sizeof(arrayf)/sizeof(arrayf[0]); x++){
-		cout << arrayf[x] << join << endl;
+void printstringarray(string start, array<string, 7> arrayf, string join){
+	cout << "$";
+	for (int x = 0; x < arrayf.size(); x++){
+		cout << arrayf[x] << join;
 	}
 }
 
 int main(){
-	string x[] = {"12", "5123", "46", "124", "362", "352", "6243"};
-	printarray(x, ",-");
+	array<string, 7> x = {"12", "5123", "46", "124", "362", "352", "6243"};
+	printstringarray("$", x, " $");
+	cout << endl;
 	return 0;
 }
