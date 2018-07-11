@@ -4,19 +4,31 @@
 #include<ctime>
 #include<cstdlib>
 #include<array>
+#include<cstdbool>
 
 using namespace std;
 
-void printstringarray(string start, array<string, 7> arrayf, string join){
-	cout << "$";
+template<size_t SIZE>
+void printstringarray(string start, array<int, SIZE> arrayf, string join, string end){
+	cout << start;
 	for (int x = 0; x < arrayf.size(); x++){
-		cout << arrayf[x] << join;
+		if (x < arrayf.size()-1){
+			cout << arrayf[x] << join;
+		}else {
+			cout << arrayf[x];
+		}
 	}
+	cout << end;
 }
 
 int main(){
-	array<string, 7> x = {"12", "5123", "46", "124", "362", "352", "6243"};
-	printstringarray("$", x, " $");
-	cout << endl;
+	string word;
+	while (true){
+		array<string, 8> userprogress;
+		array<string, 8> strikepict;
+		cout << "Enter a word: ";
+		getline(cin, word);
+		cout << word << endl;
+	}
 	return 0;
 }
