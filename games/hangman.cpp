@@ -21,27 +21,23 @@ void printStringArray(string start, array<int, SIZE> arrayf, string join, string
 	}
 	cout << end;
 }
+array<int, SIZE> toArray(string s){
+	array<int, SIZE> arr;
+	for (int x = 0; x < s.length(); x++){
+		arr[x] = s.substr(x, x+1);
+	}
+	return arr;
+}
 int main(){
 	string word;
 	while (true){
+		array<string, 8> userprogress;
+		array<string, 8> strikepict;
 		cout << "Enter a word: ";
 		cin >> word;
-		unsigned int len1 = word.length();
-		int len2 = len1;
-		array<string, len2> userprogress = {"_", "_", "_", "_", "_"};
-		array<string, len2+2> strikepict = {"{", ".", ".", ".", ".", ".", "}"};
 		//system("clear");
-		cout << word.length() << " " << userprogress[1] << " " << strikepict[0] endl;
-		/*get<0>(userprogress) = "{";
-		for (int x = 1; x < word.length();x++){
-			get<x>(strikepict) = ".";
-		}
-		get<word.length()()+1>(strikepict) = "}";
-		for (int x = 0;x < word.length();x++){
-			get<x>(userprogress) = "_";
-		}*/
-		//printStringArray("", strikepict, " ", "");
-		//printStringArray("", userprogress, " ", "");
+		cout << word << endl;
+		cout << toArray(word)[0] << endl;
 	}
 	return 0;
 }
