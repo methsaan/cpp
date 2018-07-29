@@ -9,14 +9,6 @@
 
 using namespace std;
 
-template<size_t SIZE>
-array<int, SIZE> toArray(string s){
-	array<int, SIZE> arr;
-	for (int x = 0; x < s.length(); x++){
-		arr[x] = s.substr(x, x+1);
-	}
-	return arr;
-}
 int main(){
 	string word;
 	while (true){
@@ -26,8 +18,12 @@ int main(){
 		cin >> word;
 		//system("clear");
 		cout << word << endl;
-		array<int, word.length()> wordarr = toArray(word);
-		cout << wordarr[0] << endl;
+		int wordlen = word.size();
+		int wordarr[wordlen];
+		for (int idx = 0; idx < wordlen; idx++){
+			wordarr[idx] = word.at(idx) - '0';
+		}
+		cout << wordarr[1] << endl;
 	}
 	return 0;
 }
