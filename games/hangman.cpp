@@ -10,17 +10,6 @@
 using namespace std;
 
 template<size_t SIZE>
-void printStringArray(string start, array<int, SIZE> arrayf, string join, string end){
-	cout << start;
-	for (int x = 0; x < arrayf.size(); x++){
-		if (x < arrayf.size()-1){
-			cout << arrayf[x] << join;
-		}else {
-			cout << arrayf[x];
-		}
-	}
-	cout << end;
-}
 array<int, SIZE> toArray(string s){
 	array<int, SIZE> arr;
 	for (int x = 0; x < s.length(); x++){
@@ -37,7 +26,8 @@ int main(){
 		cin >> word;
 		//system("clear");
 		cout << word << endl;
-		cout << toArray(word)[0] << endl;
+		array<int, word.length()> wordarr = toArray(word);
+		cout << wordarr[0] << endl;
 	}
 	return 0;
 }
