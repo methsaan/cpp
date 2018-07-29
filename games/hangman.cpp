@@ -16,14 +16,13 @@ int main(){
 		array<string, 8> strikepict;
 		cout << "Enter a word: ";
 		cin >> word;
-		//system("clear");
+		system("clear");
 		cout << word << endl;
 		int wordlen = word.size();
-		int wordarr[wordlen];
-		for (int idx = 0; idx < wordlen; idx++){
-			wordarr[idx] = word.at(idx) - '0';
+		char wordarr[wordlen];
+		for (int x = 0;x < wordlen;x++){
+			wordarr[x] = word.at(x);
 		}
-		cout << wordarr[1] << endl;
 	}
 	return 0;
 }
