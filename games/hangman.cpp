@@ -7,6 +7,7 @@
 #include<cstdbool>
 #include<string>
 #include<cstdio>
+#include<algorithm>
 
 using namespace std;
 
@@ -45,15 +46,17 @@ int main(){
 		for (int x = 0; x < wordlen+1; x++){
 			userprogress[x] = "_";
 		}
-		int strike = 1;
+		int strike = 0;
 		int cor = 0;
 		//game loop
 		while (true){
 			cin >> userword;
 			if (word.find(userword) != std::string::npos){
 				cout << "Letter found\n";
+				userprogress[distance(wordarr, find(wordarr, wordarr + 5, 3))] = userword;
 			}else {
 				cout << "Letter not found\n";
+				strike++;
 				strikepict[strike] = "#";
 				if (strike == wordlen){
 					cout << "You lose\n";
@@ -62,7 +65,6 @@ int main(){
 			}
 			printarr(wordlen+2, "", strikepict, "\n", "");
 			printarr(wordlen, "", userprogress, "\n", " ");
-			b++;
 		}
 	}
 	return 0;
