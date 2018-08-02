@@ -25,7 +25,7 @@ int main(){
 	string word;
 	string userword;
 	while (true){
-		//initialization of wordarr, wordlen, word, userprogress, and strikepict
+		//initialization of cor, strike, wordarr, wordlen, word, userprogress, and strikepict
 		cout << "Enter a word: ";
 		cin >> word;
 		system("clear");
@@ -45,6 +45,8 @@ int main(){
 		for (int x = 0; x < wordlen+1; x++){
 			userprogress[x] = "_";
 		}
+		int strike = 1;
+		int cor = 0;
 		//game loop
 		while (true){
 			cin >> userword;
@@ -52,9 +54,15 @@ int main(){
 				cout << "Letter found\n";
 			}else {
 				cout << "Letter not found\n";
+				strikepict[strike] = "#";
+				if (strike == wordlen){
+					cout << "You lose\n";
+					break;
+				}
 			}
 			printarr(wordlen+2, "", strikepict, "\n", "");
 			printarr(wordlen, "", userprogress, "\n", " ");
+			b++;
 		}
 	}
 	return 0;
