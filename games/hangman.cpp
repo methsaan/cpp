@@ -23,6 +23,7 @@ void printarr(int len, string start, string arr[], string end, string join){
 }
 int main(){
 	string word;
+	string userword;
 	while (true){
 		//initialization of wordarr, wordlen, word, userprogress, and strikepict
 		cout << "Enter a word: ";
@@ -44,8 +45,17 @@ int main(){
 		for (int x = 0; x < wordlen+1; x++){
 			userprogress[x] = "_";
 		}
-		printarr(wordlen, "", userprogress, "\n", " ");
-		printarr(wordlen+2, "", strikepict, "\n", "");
+		//game loop
+		while (true){
+			cin >> userword;
+			if (word.find(userword) != std::string::npos){
+				cout << "Letter found\n";
+			}else {
+				cout << "Letter not found\n";
+			}
+			printarr(wordlen+2, "", strikepict, "\n", "");
+			printarr(wordlen, "", userprogress, "\n", " ");
+		}
 	}
 	return 0;
 }
