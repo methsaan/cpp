@@ -11,6 +11,14 @@
 
 using namespace std;
 
+string findInArr(string arr[], string toFind, int len){
+	for (int i = 0; i < len; i++){
+		if (arr[i] == toFind){
+			return arr[i];
+		}
+	}
+}
+
 void printarr(int len, string start, string arr[], string end, string join){
 	cout << start;
 	for (int x = 0; x < len; x++){
@@ -32,9 +40,9 @@ int main(){
 		system("clear");
 		cout << word << endl;
 		int wordlen = word.size();
-		char wordarr[wordlen];
+		string wordarr[wordlen];
 		for (int x = 0;x < wordlen;x++){
-			wordarr[x] = word.at(x);
+			wordarr[x] = /*convert to string to be continued*/word.at(x);
 		}
 		string userprogress[wordlen+1];
 		string strikepict[wordlen+3];
@@ -53,7 +61,7 @@ int main(){
 			cin >> userword;
 			if (word.find(userword) != std::string::npos){
 				cout << "Letter found\n";
-				userprogress[distance(wordarr, find(wordarr, wordarr + 5, 3))] = userword;
+				userprogress[findInArr(wordarr)] = userword;
 			}else {
 				cout << "Letter not found\n";
 				strike++;
