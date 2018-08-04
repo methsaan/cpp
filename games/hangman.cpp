@@ -53,6 +53,7 @@ int main(){
 			cin >> userword;
 			if (word.find(userword) != std::string::npos){
 				cout << "Letter found\n";
+				const int size =
 				for (int i = 0; i < wordlen; i++){
 					if (wordarr[i] == userword){
 						userprogress[i] = userword;
