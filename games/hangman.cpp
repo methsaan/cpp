@@ -26,11 +26,10 @@ int main(){
 	string word;
 	string userword;
 	while (true){
-		//initialization of cor, strike, wordarr, wordlen, word, userprogress, and strikepict
+		//initialization of printarr(), cor, strike, wordarr, wordlen, word, userprogress, and strikepict
 		cout << "Enter a word: ";
 		cin >> word;
 		system("clear");
-		cout << word << endl;
 		int wordlen = word.size();
 		string wordarr[wordlen];
 		for (int x = 0;x < wordlen;x++){
@@ -53,12 +52,17 @@ int main(){
 			cin >> userword;
 			if (word.find(userword) != std::string::npos){
 				cout << "Letter found\n";
-				const int size =
-				for (int i = 0; i < wordlen; i++){
-					if (wordarr[i] == userword){
-						userprogress[i] = userword;
+				cor++;
+				for (int x = 0; x < wordlen+1; x++){
+					cout << wordarr[x] << "  \n\n\n\n\n\n\n   " << userword;
+					if (wordarr[x] == userword){
+						userprogress[x] = userword;
 						break;
 					}
+				}
+				if (cor == wordlen){
+					cout << "You win\n";
+					break;
 				}
 			}else {
 				cout << "Letter not found\n";
@@ -66,6 +70,7 @@ int main(){
 				strikepict[strike] = "#";
 				if (strike == wordlen){
 					cout << "You lose\n";
+					cout << "Word: " << word;
 					break;
 				}
 			}
