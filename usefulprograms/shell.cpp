@@ -15,14 +15,14 @@ int main() {
 	string type;
 	while (true) {
 		cout << "home/~$ " << flush;
-		cin >> nextCommand;
+		getline(cin, nextCommand);
 		if (nextCommand == "exit") {
 			break;
 		}
 		else if (nextCommand == "calc") {
 			while (true) {
 				cout << "home/calc/~$ " << flush;
-				cin >> calcCommand;
+				getline(cin, calcCommand);
 				if (calcCommand == "quit") {
 					break;
 				}else if (calcCommand == "standard") {
@@ -73,7 +73,7 @@ int main() {
 					}else {
 						cout << "No manual entry for " << whatToHelpWith << endl << flush;
 					}
-				}else if (calcCommand == "") {
+				}else if (calcCommand == "\0") {
 					cin.ignore();
 					cin.clear();
 					continue;
@@ -112,7 +112,7 @@ int main() {
 				cout << "No manual entry for " << nextCommand.substr(5,nextCommand.length()) << endl << flush;
 			}
 		}else if (nextCommand == "opt") {
-			cout << "calc printw help exit\n" << endl << flush;
+			cout << "calc printw help exit clear" << endl << flush;
 		}else if (nextCommand == "clear") {
 			system("clear");
 		}
