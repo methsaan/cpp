@@ -1,50 +1,10 @@
 #include<iostream>
-#include<array>
 #include<cstdlib>
 #include<ctime>
 
 using namespace std;
 int main(){
-	srand(time(0));
-	string songOrTech[] = {"song", "tech"};
-	if (songOrTech[rand()%2] == "song"){
-		string songs[] = {"Toccatina", "Etude in Ab Major", "Little Prelude in E Minor", "Rondo in C Major", "Happy Time Jazz"};
-		cout << songs[rand()%5] << endl;
-	}else{
-		string types[] = {"scale", "chromatic", "formula", "tontriad", "dom7chord", "dim7chord", "tonarp", "dom7arp", "dim7arp"};
-		string type = types[rand()%9];
-		if (type == "scale"){
-			string scales[] = {"G", "Gm harmonic", "Gm melodic", "E", "Em harmonic", "Em melodic", "B", "Bm harmonic", "Bm melodic", "Db", "C#m harmonic", "C#m melodic"};
-			cout << scales[rand()%12] << " scale\n";
-		}else if (type == "chromatic"){
-			string chroms[] = {"E", "C#"};
-			cout << "Chromatic scale starting on " << chroms[rand()%2] << endl;
-		}else if (type == "formula"){
-			string formulas[] = {"E", "Em"};
-			cout << formulas[rand()%2] << " formula pattern\n";
-		}else if (type == "tontriad"){
-			string tontriads[] = {"G", "Gm", "E", "Em", "B", "Bm", "Db", "C#m"};
-			cout << tontriads[rand()%8] << " tonic triad\n";
-		}else if (type == "dom7chord"){
-			string hands[] = {"left", "right"};
-			string dom7chords[] = {"D7", "B7", "F#7", "Ab7"};
-			cout << dom7chords[rand()%4] << " chord with " << hands[rand()%2] << " hand\n";
-		}else if (type == "dim7chord"){
-			string hands[] = {"left", "right"};
-			string dim7chords[] = {"C dim 7", "F# dim 7", "Eb dim 7", "Bb dim 7"};
-			cout << dim7chords[rand()%4] << " chord with " << hands[rand()%2] << " hand\n";
-		}else if (type == "tonarp"){
-			string hands[] = {"left", "right"};
-			string tonarps[] = {"G", "Gm", "E", "Em", "B", "Bm", "Db", "C#m"};
-			cout << tonarps[rand()%8] << " arpeggio with " << hands[rand()%2];
-		}else if (type == "dom7arp"){
-			string hands[] = {"left", "right"};
-			string dom7arps[] = {"D7", "B7", "Ab7", "F#7"};
-			cout << dom7arps[rand()%4] << " arpeggio with " << hands[rand()%2] << endl;
-		}else if (type == "dim7arp"){
-			string hands[] = {"left", "right"};
-			string dim7arps[] = {"F# dim 7", "Eb dim 7", "C dim 7", "Bb dim 7"};
-			cout << dim7arps[rand()%4] << " arpeggio with " << hands[rand()%2] << endl;
-		}
-	}
+	srand(time(NULL));
+	string items[] = {"G major scale", "G harmonic minor scale", "G melodic minor scale", "E major scale", "E harmonic minor scale", "E melodic minor scale", "B major scale", "B harmonic minor scale", "B melodic minor scale", "Db major scale", "C# harmonic minor scale", "C# melodic minor scale", "E major formula pattern scale", "E harmonic minor formula pattern scale", "G major triad", "G minor triad", "E major triad", "E minor triad", "B major triad", "B minor triad", "Db major triad", "C# minor triad", "D7 chord broken for right hand", "D7 chord solid for right hand", "D7 chord broken for left hand", "D7 chord solid for left hand", "B7 chord broken for right hand", "B7 chord solid for right hand", "B7 chord broken for left hand", "B7 chord solid for left hand", "F#7 chord broken for right hand", "F#7 chord solid for right hand", "F#7 chord broken for left hand", "F#7 chord solid for left hand", "Ab7 chord broken for right hand", "Ab7 chord solid for right hand", "Ab7 chord broken for left hand", "Ab7 chord solid for left hand", "F#dim7 chord broken for right hand", "F#dim7 chord solid for right hand", "F#dim7 chord broken for left hand", "F#dim7 chord solid for left hand", "Ebdim7 chord broken for right hand", "Ebdim7 chord solid for right hand", "Ebdim7 chord broken for left hand", "Ebdim7 chord solid for left hand", "Bbdim7 chord broken for right hand", "Bbdim7 chord solid for right hand", "Bbdim7 chord broken for left hand", "Bbdim7 chord solid for left hand", "Cdim7 chord broken for right hand", "Cdim7 chord solid for right hand", "Cdim7 chord broken for left hand", "Cdim7 chord solid for left hand", "G major arpeggio for right hand", "G major arpeggio for left hand", "G minor arpeggio for right hand", "G minor arpeggio for left hand", "E major arpeggio for right hand", "E major arpeggio for left hand", "E minor arpeggio for right hand", "E minor arpeggio for left hand", "B major arpeggio for right hand", "B major arpeggio for left hand", "B minor arpeggio for right hand", "B minor arpeggio for left hand", "Db major arpeggio for right hand", "Db major arpeggio for left hand", "C# minor arpeggio for right hand", "C# minor arpeggio for left hand", "D7 arpeggio for right hand", "D7 arpeggio for left hand", "B7 arpeggio for right hand", "B7 arpeggio for left hand", "F#7 arpeggio for right hand", "F#7 arpeggio for left hand", "Ab7 arpeggio for right hand", "Ab7 arpeggio for left hand", "F#dim7 arpeggio for right hand", "F#dim7 arpeggio for left hand", "Ebdim7 arpeggio for right hand", "Ebdim7 arpeggio for left hand", "Bbdim7 arpeggio for right hand", "Bbdim7 arpeggio for left hand", "Cdim7 arpeggio for right hand", "Cdim7 arpeggio for left hand", "Toccatina", "Etude in Ab major", "Little prelude in E minor", "Rondo in C major", "Happy time Jazz"};
+	cout << items[rand()%91] << endl;
 }
