@@ -1,13 +1,10 @@
-#include <math.h>
-#include <iostream>
-namespace MethsaansFormulas{
-	double SQRTformula(double a, double b, double c){
-		return (1 / (a - b)) * (c - b) + sqrt(b);
-	}
-}
+#ifndef NAMESPACETEST_CPP
+#define NAMESPACETEST_CPP
+#include "namespaceTest.cpp"
+
 class MethsaanMath {
 	public:
-		void setSQRT(double a, double b, double c, double *var){
-			*var = MethsaansFormulas::SQRTformula(a, b, c);
-		}
+		double SQRTformula(double a, double b, double c);
+		void setSQRT(double a, double b, double c, double *var);
 };
+#endif
