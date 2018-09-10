@@ -5,6 +5,7 @@ using namespace std;
 using namespace MethsaansFormulas;
 
 int main(){
+	MethsaanMath m;
 	double a;
 	cout << "Enter a: ";
 	cin >> a;
@@ -14,10 +15,9 @@ int main(){
 	double c;
 	cout << "Enter c: ";
 	cin >> c;
-	cout << SQRTformula(a, b, c) << endl;
+	cout << m.SQRTformula(a, b, c) << endl;
 	double ans = 10.00;
-	MethsaanMath MMO;
-	MMO.setSQRT(144, 121, 134, &ans);
+	m.setSQRT(a, b, c, &ans);
 	cout << ans << endl;
 
 }
