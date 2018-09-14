@@ -53,8 +53,7 @@ int main(){
 			if (word.find(userword) != std::string::npos){
 				cout << "Letter found\n";
 				cor++;
-				for (int x = 0; x < wordlen+1; x++){
-					cout << wordarr[x] << "  \n\n\n\n\n\n\n   " << userword;
+				for (int x = 0; x < sizeof(wordarr)/sizeof(*wordarr); x++){
 					if (wordarr[x] == userword){
 						userprogress[x] = userword;
 						break;
@@ -70,7 +69,7 @@ int main(){
 				strikepict[strike] = "#";
 				if (strike == wordlen){
 					cout << "You lose\n";
-					cout << "Word: " << word;
+					cout << "Word: " << word << endl;
 					break;
 				}
 			}
