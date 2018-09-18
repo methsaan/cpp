@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 using namespace std;
+
 void printarr(int len, string start, string arr[], string end, string join){
 	cout << start;
 	for (int x = 0; x < len; x++){
@@ -14,7 +15,7 @@ void printarr(int len, string start, string arr[], string end, string join){
 }
 int searchInArr(string arr[], string toFind){
 	int Index = 0;
-	for (int x = 0; x < arr.length(); x++){
+	for (int x = 0; x < arr->length(); x++){
 		if (arr[x] == toFind){
 			Index = x;
 			break;
@@ -42,7 +43,7 @@ int main(){
 	while (true) {
 		cout << "Enter character: ";
 		cin >> usrword;
-		if (word.contains(usrword)){
+		if (searchInArr(word, usrword) > 0){
 			for (int x = 0; x < word.length(); x++){
 				if (wordarr[x] == usrword){
 					progress[x] = usrword;
@@ -53,14 +54,13 @@ int main(){
 				break;
 			}
 		}else {
-			cout << "WRONG\n";
 			strikes++;
 			if (strikes == word.length()){
 				won = false;
 				break;
 			}
 		}
-		printarr(/*to be continued*/);
+		printarr(strikepict.length, "Strikes: ", strikepict, "\n", "");
 	}
 	if (won){
 		cout << "You win";
