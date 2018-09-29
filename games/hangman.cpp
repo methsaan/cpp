@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<ctype.h>
 #include<stdlib.h>
+#include<stdbool.h>
 using namespace std;
 
 void printarr(int len, string start, char arr[], string end, string join){
@@ -29,32 +30,59 @@ int main(){
 			break;
 		}
 	}
-	char progress[sizeof(word)/sizeof(*word)];
-	for (int x = 0; x < sizeof(word)/sizeof(*word)];x++){
+	char progress[wordlen];
+	for (int x = 0; x < wordlen; x++){
 		progress[x] = '_';
 	}
-	char strikes[sizeof(word/sizeof(*word)+2)];
+	char strikes[wordlen+2];
 	strikes[0] = '{';
-	for (int x = 1; x < sizeof(word)/sizeof(*word); x++){
+	for (int x = 1; x < wordlen; x++){
 		strikes[x] = '.';
 	}
-	strike[sizeof(word)/sizeof(*word)+1] = '}';
+	strikes[wordlen+1] = '}';
 	int strike = 0;
+	bool won = true;
 	while (1){
 		char letter;
 		cout << "Enter letter: ";
 		cin >> letter;
-		int cnt;
-		for (int x = 0; x < sizeof(word)/sizeof(*word); x++){
+		int cnt = 0;
+		for (int x = 0; x < wordlen; x++){
 			if (letter == word[x]){
 				cnt++;
 			}
 		}
 		if (cnt > 0){
-			cout << "found" << endl;
+			for (int x = 0; x < wordlen; x++){
+				if (word[x] == letter){
+					progress[x] = letter;
+				}
+			}
+			int count = 0;
+			for (int x = 0; x < wordlen; x++){
+				if (progress[x] == '_'){
+					count++;
+				}
+			}
+			if (count == 0){
+				won = true;
+				break;
+			}
 		}else {
-			cout << "not found" << endl;
+			strike++;
+			strikes[strike] = '#';
+			if (strike >= wordlen){
+				won = false;
+				break;
+			}
 		}
+		printarr(wordlen, "", progress, "\n", " ");
+		printarr(wordlen+2, "", strikes, "\n", " ");
+	}
+	if (won == true){
+		cout << "you win\n";
+	}else{
+		cout << "you lose\n";
 	}
 	return 0;
 }
