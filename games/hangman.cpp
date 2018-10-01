@@ -42,6 +42,7 @@ int main(){
 	strikes[wordlen+1] = '}';
 	int strike = 0;
 	bool won = true;
+	system("clear");
 	while (1){
 		char letter;
 		cout << "Enter letter: ";
@@ -64,6 +65,8 @@ int main(){
 					count++;
 				}
 			}
+			printarr(wordlen, "", progress, "\n", " ");
+			printarr(wordlen+2, "", strikes, "\n", "");
 			if (count == 0){
 				won = true;
 				break;
@@ -71,18 +74,19 @@ int main(){
 		}else {
 			strike++;
 			strikes[strike] = '#';
+			printarr(wordlen, "", progress, "\n", " ");
+			printarr(wordlen+2, "", strikes, "\n", "");
 			if (strike >= wordlen){
 				won = false;
 				break;
 			}
 		}
-		printarr(wordlen, "", progress, "\n", " ");
-		printarr(wordlen+2, "", strikes, "\n", " ");
 	}
 	if (won == true){
 		cout << "you win\n";
 	}else{
 		cout << "you lose\n";
 	}
+	cout << "word: " << word << endl;
 	return 0;
 }
