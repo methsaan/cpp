@@ -25,12 +25,12 @@ int main() {
 				getline(cin, calcCommand);
 				if (calcCommand == "quit") {
 					break;
-				}else if (calcCommand == "standard") {
-					cout << "F: " << flush;
+				}else if (calcCommand == "math") {
+					cout << "first number: " << flush;
 					cin >> f;
-					cout << "OP: " << flush;
+					cout << "operator: " << flush;
 					cin >> op;
-					cout << "S: " << flush;
+					cout << "second number: " << flush;
 					cin >> s;
 					if (op == "+") {
 						cout << f+s << flush << endl;
@@ -44,11 +44,11 @@ int main() {
 				}else if (calcCommand == "len"){
 					cout << "T: " << flush;
 					cin >> type;
-					if (type == "mtoc") {
+					if (type == "metrictocustomary") {
 						cout << "CM: " << flush;
 						cin >> cm;
 						cout << cm / 2.54 << "in" << flush << endl;
-					}else if (type == "ctom"){
+					}else if (type == "customarytometric"){
 						cout << "IN: ";
 						cin >> in;
 						cout << in * 2.54 << "cm" << flush << endl;
