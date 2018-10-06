@@ -29,18 +29,23 @@ class int_{
 		}
 		int_ operator%(int_ b){
 			int_ x(num / b.num);
+			return x;
 		}
-		int_ operator^(int_ b){
-			//to be continued
+		int_ get(){
+			return int_(num);
 		}
-		int get(){
+		int to_int(){
 			return num;
 		}
 };
 int main(){
-	int_ x(35);
-	int_ y(75);
-	x.set(y/3);
-	int_ z(x+y);
-	cout << z.get() << endl;
+	int_ a(35);
+	int_ b(75);
+	a.set(b/3);
+	int_ c(a+b);
+	int d = c.to_int();
+	int_ e = c.get();
+	e.set(a+b);
+	int f = (e/a).to_int();
+	cout << f << endl;
 }
