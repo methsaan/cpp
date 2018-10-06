@@ -47,5 +47,10 @@ int main(){
 	int_ e = c.get();
 	e.set(a+b);
 	int f = (e/a).to_int();
-	cout << f << endl;
+	cout << "a (int_): " << a.to_int() << endl;
+	cout << "b (int_): " << b.to_int() << endl;
+	cout << "c (int_): " << c.to_int() << endl;
+	cout << "d (int): " << d << endl;
+	cout << "e (int_): " << e.to_int() << endl;
+	cout << "f (int): " << f << endl;
 }
