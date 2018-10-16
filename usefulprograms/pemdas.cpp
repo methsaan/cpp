@@ -17,7 +17,7 @@ int indexOf(char a[], char charact, int len) {
 
 int main(int argc, char **argv){
 	char equation[50];
-	printf("Enter your equation (no spaces): ");
+	cout << "Enter your equation (no spaces): ";
 	scanf("%s", equation);
 	int bracketIndex = indexOf(equation, '(', 50);
 	int closeBracketIndex = indexOf(equation, ')', 50);
@@ -28,12 +28,28 @@ int main(int argc, char **argv){
 		temp++;
 	}
 	char firstNumInBrack[15];
+	int fnib_len = 0;
 	for (int x = 0; x < sizeof(bracketEquation)/sizeof(*bracketEquation); x++){
 		if (isdigit(bracketEquation[x])){
 			firstNumInBrack[x] = bracketEquation[x];
+			fnib_len++;
 		}else {
 			break;
 		}
 	}
-	printf("%s\n", firstNumInBrack);
+	int foundIndex = 0;
+	for (int x = 0; x < sizeof(bracketEquation)/sizeof(*bracketEquation); x++){
+		if ((bracketEquation[x] == '^') && (bracketEquation[x] == '/') && (bracketEquation[x] == 'x') && (bracketEquation[x] == '-') && (bracketEquation[x] == '+')){
+			break;
+		}
+		foundIndex++;
+	}
+	cout << foundIndex << endl;
+	//char secondNumInBrack[15];
+	//int snib_len = 0;
+	//for (int x = foundIndex; x < sizeof(bracketEquation)/sizeof(*bracketEquation); x++){
+	//	secondNumInBrack[x] = bracketEquation[x];
+	//	snib_len++;
+	//}
+	//cout << secondNumInBrack << endl;
 }
