@@ -1,5 +1,2 @@
-*.*
-!tests
-!userfulprograms
-!.gitignore
-!*.cpp
+**/a.out
+**/*.swp
