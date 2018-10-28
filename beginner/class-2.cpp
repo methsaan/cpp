@@ -2,12 +2,6 @@
 using namespace std;
 
 class train {
-    private:
-        int speed;
-        void stopNow() {
-            cout << "Stopping the train as it has reached the " << speed<< endl;
-        }
-
     public:
         void goForward(){
             cout << "This is the public go_forward function" << endl;
@@ -20,6 +14,12 @@ class train {
         }
         void setSpeed(int mainSpeed) {
             speed = mainSpeed;
+        }
+
+    private:
+        int speed;
+        void stopNow() {
+            cout << "Stopping the train as it has reached the " << speed<< endl;
         }
 };
 
