@@ -21,11 +21,17 @@ class parent{
 		double getvar4(){
 			return var4;
 		}
+		char getvar5(){
+		}
+		bool getvar6(){
+		}
 	private:
 		int var1 = 15;
 		float var2 = 12.134241;
 		long long int var3 = 12341234123;
 		double var4 = 3.141593;
+		char var5;
+		bool var6;
 };
 
 class child : public parent {
@@ -87,7 +93,9 @@ int main(int argc, char **argv){
 		cout << parentlist[x].getvar1() << endl;
 		cout << parentlist[x].getvar2() << endl;
 		cout << parentlist[x].getvar3() << endl;
-		cout << parentlist[x].getvar4() << endl << endl;
+		cout << parentlist[x].getvar4() << endl;
+		cout << parentlist[x].getvar5() << endl;
+		cout << parentlist[x].getvar6() << endl << endl;
 	}
 	printvar1(p);
 	printvar1(c1);
