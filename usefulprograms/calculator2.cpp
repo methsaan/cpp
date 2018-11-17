@@ -42,7 +42,7 @@ int main()
 		cin >> f;
 		if (cin.fail()) {
 			cin.clear();
-			cout << "\nInvalid operator.\n";
+			cout << "Invalid number.\n";
 			break;
 		}
 		cout << "Enter second number (if needed): ";
@@ -50,7 +50,7 @@ int main()
 		if (cin.fail()) {
 			if (oper == "hypotenuse") {
 				cin.clear();
-				cout << "Invalid operator. \n";
+				cout << "Invalid number.\n";
 				break;
 			}else {
 				cin.ignore(10, '\n');
@@ -64,7 +64,7 @@ int main()
 			squart = pow(f, 0.5);
 			cout << squart << endl;
 		}else if (oper == "cube_root") {
-			squart = pow(f, 0.3333333333333333333333333333333333333333333333333333332);
+			squart = pow(f, 0.333333333333332);
 			cout << squart << endl;
 		}
 	}
