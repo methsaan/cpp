@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 
 using namespace std;
 
@@ -21,10 +22,12 @@ int main(int argc, char **argv){
 		}else if (command == 'c'){
 			fp2 = fopen("taskfile", "w");
 			fprintf(fp2, "");
+		}else if (command == 'v'){
+			system("vi taskfile");
 		}else if (command == 'p'){
 			while (!feof(fp3)){
 				fgets(content, 3000, fp3);
-				printf("%s\n", content);
+				printf("%s", content);
 			}
 		}else if (command == 'q'){
 			break;
