@@ -18,8 +18,8 @@ class Customer {
 		int health(){
 			return health_;
 		}
-		void reduceHealth(int amount){
-			health_ -= amount;
+		void changeHealth(int amount){
+			health_ += amount;
 		}
 };
 
@@ -55,9 +55,17 @@ class ShoppingCart {
 			string itemlista = "";
 			for (int x = 0; x < numOfItems; x++){
 				itemlista = itemlista + items[x];
-				itemlista = itemlista + "(" + to_string(freq[x+1]) + ")\t";
+				itemlista = itemlista + "(" + to_string(freq[x+1]) + ")\n";
 			}
 			return itemlista;
+		}
+		void clear() {
+			total = 0.00;
+			numOfItems = 0;
+			for (int x = 0; x < 100; x++){
+				items[x] = "";
+				freq[x] = 0;
+			}
 		}
 };
 
@@ -67,23 +75,38 @@ int main(int argc, char *argv[]){
 	string command;
 	string food;
 	double price;
-	while (co.dollarsOwned() > 0.00){
+	char storeCommand;
+	while ((co.dollarsOwned() > 0.00) && (co.health() > 0)) {
 		cout << "Enter command (\"list\" for a list of commands): ";
 		getline(cin, command);
-		if (command == ""){
+		if (command == "quit"){
 			break;
 		}else if (command == "list"){
-			cout << "list: list of commands\n: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\n";
+			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\n";
 		}else if (command == "go to store"){
-			cout << "Enter b to buy and q to quit\n";
-			if (getchar() == 'b'){
-				cout << "What do you want to buy? ('q' to quit) ";
-				cin >> food;
-				cout << "Enter the price: ";
-				cin >> price;
-				sco.addToCart(food, price);
-			}else {
-				cout << "items: " << sco.itemList() << endl;
+			sco.clear();
+			co.changeHealth(-3);
+			for (;;) {
+				cout << "Type l to list options, b to buy and q to quit\n";
+				storeCommand = getchar();
+				if (storeCommand == 'l'){
+					cout << "l: list options, q: quit, b: buy, p: print list, t: get total price\n";
+				}else if (storeCommand == 'b') {
+					cout << "What do you want to buy? ";
+					cin >> food;
+					cout << "Enter the price: ";
+					cin >> price;
+					sco.addToCart(food, price);
+					co.spend(sco.totalPrice());
+				}else if (storeCommand == 'p'){
+					cout << sco.itemList() << endl;
+				}else if (storeCommand == 't'){
+					cout << sco.totalPricePlusTax() << endl;
+				}else if (storeCommand == 'q'){
+					cout << "Leaving Food Store ...\n";
+					break;
+				}
+				getchar();
 			}
 		}else {
 			cout << "No such command\n";
