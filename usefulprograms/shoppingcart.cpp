@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include <cstdlib>
 #include <ctime>
 
@@ -76,6 +77,7 @@ int main(int argc, char *argv[]){
 	string food;
 	double price;
 	char storeCommand;
+	double calories;
 	while ((co.dollarsOwned() > 0.00) && (co.health() > 0)) {
 		cout << "Enter command (\"list\" for a list of commands): ";
 		getline(cin, command);
@@ -108,6 +110,12 @@ int main(int argc, char *argv[]){
 				}
 				getchar();
 			}
+			getchar();
+		}else if (command == "eat"){
+			cout << "How many kilograms of food do you want to eat? ";
+			cin >> calories;
+			cout << "storing energy ...\n";
+			cout << "You gained " << calories << " calories" << endl;
 		}else {
 			cout << "No such command\n";
 		}
