@@ -70,21 +70,30 @@ class ShoppingCart {
 		}
 };
 
+class Math {
+	public:
+		float roundToTwo(float var){
+			float value = (int)(var * 100 + 0.5);
+			return ((float)value) / 100;
+		}
+};
 int main(int argc, char *argv[]){
 	ShoppingCart sco;
 	Customer co;
+	Math mo;
 	string command;
 	string food;
 	double price;
 	char storeCommand;
 	double calories;
+	char yn;
 	while ((co.dollarsOwned() > 0.00) && (co.health() > 0)) {
 		cout << "Enter command (\"list\" for a list of commands): ";
 		getline(cin, command);
 		if (command == "quit"){
 			break;
 		}else if (command == "list"){
-			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\n";
+			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\nsee money: see money";
 		}else if (command == "go to store"){
 			sco.clear();
 			co.changeHealth(-3);
@@ -96,14 +105,13 @@ int main(int argc, char *argv[]){
 				}else if (storeCommand == 'b') {
 					cout << "What do you want to buy? ";
 					cin >> food;
-					cout << "Enter the price: ";
-					cin >> price;
+					price = ((double)food.length()*5)/(rand()%10+1);
 					sco.addToCart(food, price);
-					co.spend(sco.totalPrice());
+					co.spend(mo.roundToTwo(sco.totalPricePlusTax()));
 				}else if (storeCommand == 'p'){
 					cout << sco.itemList() << endl;
 				}else if (storeCommand == 't'){
-					cout << sco.totalPricePlusTax() << endl;
+					cout << mo.roundToTwo(sco.totalPricePlusTax()) << endl;
 				}else if (storeCommand == 'q'){
 					cout << "Leaving Food Store ...\n";
 					break;
@@ -112,10 +120,24 @@ int main(int argc, char *argv[]){
 			}
 			getchar();
 		}else if (command == "eat"){
-			cout << "How many kilograms of food do you want to eat? ";
+			cout << "How many calories do you want to eat? ";
 			cin >> calories;
 			cout << "storing energy ...\n";
 			cout << "You gained " << calories << " calories" << endl;
+			co.changeHealth(calories);
+		}else if (command == "see health"){
+			cout << co.health() << endl;
+		}else if (command == "gain health"){
+			cout << "Are you sure you want to gain 5 health points? It will cost $4.50 (y/n) " << endl;
+			cin >> yn;
+			if (yn == 'y'){
+				co.spend(4.50);
+				co.changeHealth(5);
+			}else{
+				cout << "";
+			}
+		}else if (command == "see money"){
+			cout << co.dollarsOwned() << endl;
 		}else {
 			cout << "No such command\n";
 		}
