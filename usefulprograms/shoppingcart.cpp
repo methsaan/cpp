@@ -8,7 +8,8 @@ using namespace std;
 class Customer {
 	private:
 		double moneyowned = 1000.00;
-		int health_ = 50;
+		double health_ = 50.0;
+		double content_in_fridge = 0.0;
 	public:
 		void spend(int dollars){
 			moneyowned -= dollars;
@@ -16,10 +17,10 @@ class Customer {
 		double dollarsOwned(){
 			return moneyowned;
 		}
-		int health(){
+		double health(){
 			return health_;
 		}
-		void changeHealth(int amount){
+		void changeHealth(double amount){
 			health_ += amount;
 		}
 };
@@ -93,7 +94,7 @@ int main(int argc, char *argv[]){
 		if (command == "quit"){
 			break;
 		}else if (command == "list"){
-			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\nsee money: see money";
+			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\nsee money: see money\n";
 		}else if (command == "go to store"){
 			sco.clear();
 			co.changeHealth(-3);
@@ -105,7 +106,7 @@ int main(int argc, char *argv[]){
 				}else if (storeCommand == 'b') {
 					cout << "What do you want to buy? ";
 					cin >> food;
-					price = ((double)food.length()*5)/(rand()%10+1);
+					price = ((double)food.length()*5)/(rand()%5+1);
 					sco.addToCart(food, price);
 					co.spend(mo.roundToTwo(sco.totalPricePlusTax()));
 				}else if (storeCommand == 'p'){
@@ -132,7 +133,7 @@ int main(int argc, char *argv[]){
 			cin >> yn;
 			if (yn == 'y'){
 				co.spend(4.50);
-				co.changeHealth(5);
+				co.changeHealth(5.0);
 			}else{
 				cout << "";
 			}
