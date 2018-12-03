@@ -23,6 +23,12 @@ class Customer {
 		void changeHealth(double amount){
 			health_ += amount;
 		}
+		void changeContentsInFridge(double amount){
+			content_in_fridge += amount;
+		}
+		double contentInFridge(){
+			return content_in_fridge;
+		}
 };
 
 class ShoppingCart {
@@ -88,7 +94,8 @@ int main(int argc, char *argv[]){
 	char storeCommand;
 	double calories;
 	char yn;
-	while ((co.dollarsOwned() > 0.00) && (co.health() > 0)) {
+	srand(time(0));
+	while (1) {
 		cout << "Enter command (\"list\" for a list of commands): ";
 		getline(cin, command);
 		if (command == "quit"){
@@ -106,14 +113,15 @@ int main(int argc, char *argv[]){
 				}else if (storeCommand == 'b') {
 					cout << "What do you want to buy? ";
 					cin >> food;
-					price = ((double)food.length()*5)/(rand()%5+1);
+					price = 0.01*(rand()%1000)+2;
 					sco.addToCart(food, price);
-					co.spend(mo.roundToTwo(sco.totalPricePlusTax()));
+					co.changeContentsInFridge(price-0.50);
 				}else if (storeCommand == 'p'){
 					cout << sco.itemList() << endl;
 				}else if (storeCommand == 't'){
 					cout << mo.roundToTwo(sco.totalPricePlusTax()) << endl;
 				}else if (storeCommand == 'q'){
+					co.spend(mo.roundToTwo(sco.totalPricePlusTax()));
 					cout << "Leaving Food Store ...\n";
 					break;
 				}
@@ -126,6 +134,7 @@ int main(int argc, char *argv[]){
 			cout << "storing energy ...\n";
 			cout << "You gained " << calories << " calories" << endl;
 			co.changeHealth(calories);
+			co.changeContentsInFridge(-(0.01*(rand()%1000)+1.50));
 		}else if (command == "see health"){
 			cout << co.health() << endl;
 		}else if (command == "gain health"){
@@ -141,6 +150,13 @@ int main(int argc, char *argv[]){
 			cout << co.dollarsOwned() << endl;
 		}else {
 			cout << "No such command\n";
+		}
+		if (co.health() == 0) {
+			cout << "You lost all your energy" << endl;
+			break;
+		}else if (co.dollarsOwned() == 0.00){
+			cout << "You are broke" << endl;
+			break;
 		}
 	}
 }
