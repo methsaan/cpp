@@ -9,7 +9,7 @@ class Customer {
 	private:
 		double moneyowned = 1000.00;
 		double health_ = 50.0;
-		double content_in_fridge = 0.0;
+		double food_in_fridge = 0.0;
 	public:
 		void spend(int dollars){
 			moneyowned -= dollars;
@@ -23,11 +23,11 @@ class Customer {
 		void changeHealth(double amount){
 			health_ += amount;
 		}
-		void changeContentsInFridge(double amount){
-			content_in_fridge += amount;
+		void changeFoodInFridge(double amount){
+			food_in_fridge += amount;
 		}
-		double contentInFridge(){
-			return content_in_fridge;
+		double foodInFridge(){
+			return food_in_fridge;
 		}
 };
 
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
 	string food;
 	double price;
 	char storeCommand;
-	double calories;
+	double foodAmount;
 	char yn;
 	srand(time(0));
 	while (1) {
@@ -102,6 +102,7 @@ int main(int argc, char *argv[]){
 			break;
 		}else if (command == "list"){
 			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\nsee money: see money\n";
+			getchar();
 		}else if (command == "go to store"){
 			sco.clear();
 			co.changeHealth(-3);
@@ -114,8 +115,12 @@ int main(int argc, char *argv[]){
 					cout << "What do you want to buy? ";
 					cin >> food;
 					price = 0.01*(rand()%1000)+2;
-					sco.addToCart(food, price);
-					co.changeContentsInFridge(price-0.50);
+					if (co.dollarsOwned() >= sco.totalPricePlusTax()){
+						sco.addToCart(food, price);
+						co.changeFoodInFridge(price-0.50);
+					}else {
+						cout << "You don't have enough money\n";
+					}
 				}else if (storeCommand == 'p'){
 					cout << sco.itemList() << endl;
 				}else if (storeCommand == 't'){
@@ -129,12 +134,17 @@ int main(int argc, char *argv[]){
 			}
 			getchar();
 		}else if (command == "eat"){
-			cout << "How many calories do you want to eat? ";
-			cin >> calories;
-			cout << "storing energy ...\n";
-			cout << "You gained " << calories << " calories" << endl;
-			co.changeHealth(calories);
-			co.changeContentsInFridge(-(0.01*(rand()%1000)+1.50));
+			cout << "How much food do you want to eat? (5 - 500) ";
+			cin >> foodAmount;
+			if (co.foodInFridge() >= foodAmount) {
+				cout << "storing energy ...\n";
+				cout << "You gained " << foodAmount << " health points" << endl;
+				co.changeHealth(foodAmount);
+				co.changeFoodInFridge(-(0.01*(rand()%1000)+1.50));
+			}else {
+				cout << "You don't have enough food in your fridge\n";
+			}
+			getchar();
 		}else if (command == "see health"){
 			cout << co.health() << endl;
 		}else if (command == "gain health"){
@@ -146,16 +156,20 @@ int main(int argc, char *argv[]){
 			}else{
 				cout << "";
 			}
+			getchar();
 		}else if (command == "see money"){
-			cout << co.dollarsOwned() << endl;
+			cout << mo.roundToTwo(co.dollarsOwned()) << endl;
+			getchar();
 		}else {
-			cout << "No such command\n";
+			cout << "";
 		}
 		if (co.health() == 0) {
 			cout << "You lost all your energy" << endl;
+			getchar();
 			break;
 		}else if (co.dollarsOwned() == 0.00){
 			cout << "You are broke" << endl;
+			getchar();
 			break;
 		}
 	}
