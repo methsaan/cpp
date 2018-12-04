@@ -11,7 +11,7 @@ class Customer {
 		double health_ = 50.0;
 		double food_in_fridge = 0.0;
 	public:
-		void spend(int dollars){
+		void spend(double dollars){
 			moneyowned -= dollars;
 		}
 		double dollarsOwned(){
@@ -79,9 +79,9 @@ class ShoppingCart {
 
 class Math {
 	public:
-		float roundToTwo(float var){
-			float value = (int)(var * 100 + 0.5);
-			return ((float)value) / 100;
+		double roundToTwo(double var){
+			double value = (int)(var * 100 + 0.5);
+			return ((double)value) / 100;
 		}
 };
 int main(int argc, char *argv[]){
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]){
 			getchar();
 		}else if (command == "go to store"){
 			sco.clear();
-			co.changeHealth(-3);
+			co.changeHealth(-(rand()%7)+1);
 			for (;;) {
 				cout << "Type l to list options, b to buy and q to quit\n";
 				storeCommand = getchar();
@@ -138,8 +138,8 @@ int main(int argc, char *argv[]){
 			cin >> foodAmount;
 			if (co.foodInFridge() >= foodAmount) {
 				cout << "storing energy ...\n";
-				cout << "You gained " << foodAmount << " health points" << endl;
-				co.changeHealth(foodAmount);
+				cout << "You gained " << (int)foodAmount/3 << " health points" << endl;
+				co.changeHealth((int)foodAmount/3);
 				co.changeFoodInFridge(-(0.01*(rand()%1000)+1.50));
 			}else {
 				cout << "You don't have enough food in your fridge\n";
