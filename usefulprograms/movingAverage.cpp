@@ -24,6 +24,6 @@ int main(int argc, char **argv){
 			total += numbers[y];
 		}
 		average = (double)total/(double)numOfnums;
-		cout << "The average is now: " << average << endl;
+		cout << "average: " << average << endl;
 	}
 }

@@ -7,8 +7,8 @@ using namespace std;
 
 class Customer {
 	private:
-		double moneyowned = 1000.00;
-		double health_ = 50.0;
+		double moneyowned = 50.00;
+		double health_ = 30.0;
 		double food_in_fridge = 0.0;
 	public:
 		void spend(double dollars){
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]){
 		if (command == "quit"){
 			break;
 		}else if (command == "list"){
-			cout << "list: list of commands\nquit: quit\ngo to store: go to store\neat: eat food\nsee health: see health (out of 100)\ngain health: gain health\nsee money: see money\n";
+			cout << "list: list of commands\t\tquit: quit\ngo to store: go to store\t\teat: eat food\nsee health: see health (out of 100)\t\tgain health: gain health\nsee money: see money\t\tearn money: work to earn money\n";
 			getchar();
 		}else if (command == "go to store"){
 			sco.clear();
@@ -148,26 +148,41 @@ int main(int argc, char *argv[]){
 		}else if (command == "see health"){
 			cout << co.health() << endl;
 		}else if (command == "gain health"){
-			cout << "Are you sure you want to gain 5 health points? It will cost $4.50 (y/n) " << endl;
+			cout << "Are you sure you want to gain 15 health points? It will cost $129.99 (y/n) " << endl;
 			cin >> yn;
 			if (yn == 'y'){
-				co.spend(4.50);
-				co.changeHealth(5.0);
+				if (co.dollarsOwned()-130.00 < 0) {
+					cout << "You don't have enough money" << endl;
+				}else {
+					co.spend(130.00);
+					co.changeHealth(15.0);
+				}
 			}else{
 				cout << "";
 			}
 			getchar();
 		}else if (command == "see money"){
-			cout << mo.roundToTwo(co.dollarsOwned()) << endl;
+			printf("%.2f\n", mo.roundToTwo(co.dollarsOwned()));
+			getchar();
+		}else if (command == "earn money"){
+			double hrs;
+			cout << "How many hours do you want to work for: ";
+			cin >> hrs;
+			if (co.health()-(-(int)mo.roundToTwo(hrs*2.5)) < 0) {
+				cout << "You will lose all your energy ...";
+				getchar();
+			}
+			co.spend(-(int)mo.roundToTwo(hrs*2.5));
+			co.changeHealth(-(hrs*1.02));
 			getchar();
 		}else {
 			cout << "";
 		}
-		if (co.health() == 0) {
+		if (co.health() < 0) {
 			cout << "You lost all your energy" << endl;
 			getchar();
 			break;
-		}else if (co.dollarsOwned() == 0.00){
+		}else if (co.dollarsOwned() < 0.00){
 			cout << "You are broke" << endl;
 			getchar();
 			break;
