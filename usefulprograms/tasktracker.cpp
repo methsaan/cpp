@@ -20,9 +20,10 @@ int main(int argc, char **argv){
 			break;
 		}else if (strcmp(task, "p\n") == 0){
 			fscanf(fp2, "%s", taskToRead);
-			printf();
+			printf("task: %s", taskToRead);
+		}else {
+			printf("%s", task);
+			fprintf(fp, "%s", task);
 		}
-		printf("%s", task);
-		fprintf(fp, "%s", task);
 	}
 }

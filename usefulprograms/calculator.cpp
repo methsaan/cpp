@@ -33,7 +33,7 @@ int main()
 		cout << "The answer is " << pow(f, s)  << endl;
 	}
 	else {
-		cout << "Invalid operator. \n";
+		cout << "Invalid operator\n";
 	}
 	return 0;
 }
