@@ -1,3 +1,4 @@
+#include<algorithm>
 #include<iostream>
 #include<array>
 #include<cstring>
@@ -9,30 +10,31 @@ using namespace std;
 int main(){
 	srand(time(0));
 	string solidOrBlocked[] = {"solid", "broken"};
-	string majMinScales[] = {"G major", "G harmonic minor", "G melodic minor", "E major", "E harmonic minor", "E melodic minor", "B major", "B harmonic minor", "B melodic minor", "Db major", "C# harmonic minor", "C# melodic minor"};
-	string chromScales[] = {"Starting on C#", "Starting on E"};
-	string formulaPatterns[] = {"E major", "E minor"};
-	string tonicTriads[] = {"G major", "G minor", "E major", "E minor", "B major", "B minor", "Db major", "C# minor"};
-	string dominantSeventhChords[] = {"D7", "B7", "F#7", "Ab7"};
-	string diminishedSeventhChords[] = {"F# dim 7", "Eb dim 7", "Bb dim 7", "C dim 7"};
-	string leftOrRight[] = {"left", "right"};
+	string majMinScales[] = {"C major", "C harmonic minor", "C melodic minor", "D major", "D harmonic minor", "D melodic minor", "F major", "F harmonic minor", "F melodic minor", "Ab major", "G# harmonic minor", "G# melodic minor", "Gb major", "F# harmonic minor", "F# melodic minor"};
+	string chromScales[] = {"Starting on D", "Starting on Ab"};
+	string formulaPatterns[] = {"D major", "D harmonic minor"};
+	string fourNoteChords[] = {"C major", "C minor", "D major", "D minor", "F major", "F minor", "Ab major", "G# minor", "Gb major", "F# minor"};
+	string dominantSeventhChords[] = {"G7", "A7", "C7", "Eb7", "Db7"};
+	string diminishedSeventhChords[] = {"B dim 7", "C# dim 7", "E dim 7", "G dim 7", "F dim 7"};
 	cout << "MAJOR / MINOR SCALES: \n";
-	cout << "\t" << majMinScales[rand()%12] << ", " << majMinScales[rand()%12] << ", " << majMinScales[rand()%12] << endl;
+	cout << "\t" << majMinScales[rand()%15] << ", " << majMinScales[rand()%15] << ", " << majMinScales[rand()%15] << endl;
 	cout << "CHROMATIC SCALES: \n";
 	cout << "\t" << chromScales[rand()%2] << endl;
 	cout << "FORMULA PATTERN SCALES: \n";
 	cout << "\t" << formulaPatterns[rand()%2] << endl;
-	cout << "TONIC TRIADS: \n";
-	cout << "\t" << tonicTriads[rand()%8] << " " << solidOrBlocked[rand()%2] << " and " << tonicTriads[rand()%8] << " " << solidOrBlocked[rand()%2] << endl;
+	cout << "FOUR NOTE CHORDS: \n";
+	cout << "\t" << fourNoteChords[rand()%10]  << " and " << fourNoteChords[rand()%10] << endl;
 	cout << "DOMINANT SEVENTH CHORDS: \n";
-	cout << "\t" << dominantSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << " hand " << " and " << dominantSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << endl;
+	cout << "\t" << dominantSeventhChords[rand()%5] << " and " << dominantSeventhChords[rand()%5] << endl;
 	cout << "DIMISHED SEVENTH CHORDS: \n";
-	cout << "\t" << diminishedSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << " hand " << " and " << diminishedSeventhChords[rand()%4] << " " << solidOrBlocked[rand()%2] << " for " << leftOrRight[rand()%2] << endl;
+	cout << "\t" << diminishedSeventhChords[rand()%5] << " and " << diminishedSeventhChords[rand()%4] << endl;
 	cout << "TONIC ARPEGGIOS:\n";
-	cout << "\t" << tonicTriads[rand()%8] << " with " << leftOrRight[rand()%2] << " hand and " << tonicTriads[rand()%8] << " with " << leftOrRight[rand()%2] << " hand\n";
+	cout << "\t" << fourNoteChords[rand()%10] << " and " << fourNoteChords[rand()%8] << endl;
 	cout << "DOMINANT SEVENTH ARPEGGIOS:\n";
-	cout << "\t" << dominantSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
+	cout << "\t" << dominantSeventhChords[rand()%5];
 	cout << "DIMINISHED SEVENTH ARPEGGIOS:\n";
-	cout << "\t" << diminishedSeventhChords[rand()%4] << " with " << leftOrRight[rand()%2] << " hand\n";
-	cout << "Toccatina\nEtude in Ab Major\nLittle Prelude in E minor\nRondo in C Major\nHappy Time Jazz\n";
+	cout << "\t" << diminishedSeventhChords[rand()%5] << endl;
+	string u = "\u00Dc";
+	std::transform(u.begin(), u.end(), u.begin(), ::tolower);
+	cout << "Etude in D Minor\nEtude in G Major\nPassepied in D Major\nF" << u << "r Elise\nList C\n";
 }
