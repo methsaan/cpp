@@ -20,8 +20,9 @@ int main()
 	bool running = true;
 	while (running == true){
 		double f;
+		string ss;
 		double s;
-		double squart;
+		double sqrt;
 		cout << "################################################\n";
 		cout << "########### Welcome to calculator 2 ############\n";
 		cout << "################################################\n";
@@ -46,7 +47,10 @@ int main()
 			break;
 		}
 		cout << "Enter second number (if needed): ";
-		cin >> s;
+		getline(cin, ss);
+		if (ss != "\n") {
+			s = stoi(ss);
+		}
 		if (cin.fail()) {
 			if (oper == "hypotenuse") {
 				cin.clear();
@@ -58,14 +62,14 @@ int main()
 			}
 		}
 		if (oper == "hypotenuse") {
-			squart = pow(f*f+s*s, 0.5);
-			cout << squart << endl;
+			sqrt = pow(f*f+s*s, 0.5);
+			cout << sqrt << endl;
 		}else if (oper == "square_root") {
-			squart = pow(f, 0.5);
-			cout << squart << endl;
+			sqrt = pow(f, 0.5);
+			cout << sqrt << endl;
 		}else if (oper == "cube_root") {
-			squart = pow(f, 0.333333333333332);
-			cout << squart << endl;
+			sqrt = pow(f, 1/3);
+			cout << sqrt << endl;
 		}
 	}
 	return 0;
