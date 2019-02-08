@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
 		cout << "##                            ##\n";
 		cout << "################################\n";
 		xPos++;
-		for (unsigned long long int x = 0; x < 10000000; x++) {
+		for (unsigned long long int x = 0; x < 1000000; x++) {
 			;
 		}
 	}
