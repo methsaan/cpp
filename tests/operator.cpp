@@ -1,6 +1,8 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
+
 class int_{
 	private:
 		int num;
@@ -8,7 +10,7 @@ class int_{
 		int_(int n){
 			num = n;
 		}
-		void set(int_ number){
+		int_ operator=(int_ number){
 			num = number.num;
 		}
 	       	int_ operator+(int_ b){
@@ -31,6 +33,10 @@ class int_{
 			int_ x(num / b.num);
 			return x;
 		}
+		int_ operator^(int_ b){
+			int_ x(pow(num, b.num));
+			return x;
+		}
 		int_ get(){
 			return int_(num);
 		}
@@ -41,12 +47,13 @@ class int_{
 int main(){
 	int_ a(35);
 	int_ b(75);
-	a.set(b/3);
-	int_ c(a+b);
+	a = b/3;
+	int_ c(a + b);
 	int d = c.to_int();
 	int_ e = c.get();
-	e.set(a+b);
-	int f = (e/a).to_int();
+	e = a^2;
+	int f = (e+a).to_int();
+
 	cout << "a (int_): " << a.to_int() << endl;
 	cout << "b (int_): " << b.to_int() << endl;
 	cout << "c (int_): " << c.to_int() << endl;
