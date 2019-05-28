@@ -107,7 +107,7 @@ int main() {
 			}else if (nextCommand.substr(5, nextCommand.length()) == "opt"){
 				cout << "opt\n" << flush;
 				cout << "DESCRIPTION:\n" << flush;
-				cout << "\tLists home options" << flush;
+				cout << "\tLists home options\n" << flush;
 			}else {
 				cout << "No manual entry for " << nextCommand.substr(5,nextCommand.length()) << endl << flush;
 			}
