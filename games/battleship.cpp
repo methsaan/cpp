@@ -19,14 +19,31 @@ int main(int argc, char *argv[]) {
 	}
 	while (1) {
 		cout << "P1: Enter coordinate: ";
-		cin >> x >> " " >> y;
+		cin.ignore(1, '(');
+		cin >> x;
+		cin.ignore(1, ',');
+		cin.ignore(1, ' ');
+		cin >> y;
+		cin.ignore(')');
 		p1shot[x-1][y-1] = "#";
 		cout << "P2: Enter coordinate: ";
-		cin >> x >> " " >> y;
+		cin.ignore(1, '(');
+		cin >> x;
+		cin.ignore(1, ',');
+		cin.ignore(1, ' ');
+		cin >> y;
+		cin.ignore(')');
 		p2shot[x-1][y-1] = "#";
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				cout << p1shot[i][j];
+			}
+			cout << endl;
+		}
+		cout << endl;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				cout << p2shot[i][j];
 			}
 			cout << endl;
 		}
