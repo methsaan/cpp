@@ -23,7 +23,6 @@ int main(int argc, char *argv[]){
 	int range = len;
 	for (int i = len; i > 0; i--) {
 		for (int x = 0; x < range-1; x++) {
-			cout << words[x] << "  -->  " << words[x+1] << endl;
 			if (words[x][0] > words[x+1][0]) {
 				string temp = words[x];
 				words[x] = words[x+1];
