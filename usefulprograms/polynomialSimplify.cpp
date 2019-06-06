@@ -24,12 +24,13 @@ int isIn(string str, string arrstr[], int len) {
 int main(int argc, char *argv[]) {
 	int numOfTerms;
 	string variables[100];
-	cout << "Enter number of terms in the polynomial: ";
+	cout << "Enter number of terms in the polynomial (use ^ for power): ";
 	cin >> numOfTerms;
+	cout << "Enter terms (line by line)\n";
 	term polynomial[numOfTerms];
 	for (int x = 0; x < numOfTerms; x++) {
 		cin >> polynomial[x].coefficient >> polynomial[x].variable;
-		polynomial[x].numPolarity = polynomial[x].coefficient < 0 ? "" : "+";
+		polynomial[x].numPolarity = polynomial[x].coefficient < 0 ? "-" : "+";
 	}
 	int varcnt = 0;
 	for (int x = 0; x < sizeof(polynomial)/sizeof(*polynomial); x++) {
@@ -50,17 +51,17 @@ int main(int argc, char *argv[]) {
 			}
 		}
 		simpPolynomial[x].coefficient = tot;
-		simpPolynomial[x].numPolarity = tot < 0 ? "" : "+";
+		simpPolynomial[x].numPolarity = tot < 0 ? "-" : "+";
 		simpPolynomial[x].variable = variables[x];
 	}
 	cout << "Polynomial: ";
 	for (int x = 0; x < numOfTerms; x++) {
-		cout << polynomial[x].numPolarity << polynomial[x].coefficient << polynomial[x].variable;
+		cout << polynomial[x].numPolarity << " " << abs(polynomial[x].coefficient) << polynomial[x].variable << " ";
 	}
 	cout << endl;
 	cout << "Simplified polynomial: ";
 	for (int x = 0; x < varcnt; x++) {
-		cout << simpPolynomial[x].numPolarity << simpPolynomial[x].coefficient << simpPolynomial[x].variable;
+		cout << simpPolynomial[x].numPolarity << " " << abs(simpPolynomial[x].coefficient) << simpPolynomial[x].variable << " ";
 	}
 	cout << endl;
 }
