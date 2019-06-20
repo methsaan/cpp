@@ -1,11 +1,15 @@
 #include <cstdlib>
-#include <cstdio>
+#include <iostream>
 #include <cstring>
+#include <cctype>
+#include <bits/stdc++.h>
+
+using namespace std;
 
 int main(int argc, char *argv[]){
-	printf("%d\n", argc);
-	char *dir = argv[1];
-	char *str = "ls ";
-	char command[] = strcat(str, dir);
+	string arg = argv[1];
+	string commandstr = "ls " + arg;
+	char command[commandstr.length()+1];
+	strcpy(command, commandstr.c_str());
 	system(command);
 }
