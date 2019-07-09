@@ -25,8 +25,8 @@ class calculator {
 		double power(double base, double exp) {
 			return pow(base, exp);
 		}
-		double percent(double dividend, double divisor) {
-			return dividend/divisor*100;
+		double percent(double num) {
+			return num/100;
 		}
 		double factorial(double num) {
 			double result = 1;
