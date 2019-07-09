@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <cmath>
 #include <cstdlib>
 #include "calculatorsci.cpp"
@@ -50,6 +51,7 @@ bool contains_digit(string s) {
 string encrypt(string equation) {
 	string equation2 = equation;
 	replaceAll(equation2, "e", "c.e");
+	replaceAll(equation2, "Ans", "c.Ans");
 	replaceAll(equation2, "PI", "c.PI");
 	replaceAll(equation2, "x", "*");
 	replaceAll(equation2, "Sin", "c.sine");
@@ -79,16 +81,6 @@ string encrypt(string equation) {
 		}
 	}
 	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
-	if (contains(equation2, "%")) {
-		for (int x = stringIndex(equation2, "%")-1;; x--) {
-			tempstr = equation2.substr(x, 1);
-			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
-				break;
-			}
-			portion4 += equation2.substr(x, 1);
-		}
-	}
-	replaceAll(equation2, "%" + reverse(portion4), "c.percent(" + reverse(portion4) + ")");
 	if (contains(equation2, "!")) {
 		for (int x = stringIndex(equation2, "!")-1;; x--) {
 			tempstr = equation2.substr(x, 1);
@@ -99,7 +91,16 @@ string encrypt(string equation) {
 		}
 	}
 	replaceAll(equation2, reverse(portion3) + "!", "c.factorial(" + reverse(portion3) + ")");
-	return equation2;
+	if (contains(equation2, "%")) {
+		for (int x = stringIndex(equation2, "%")-1;; x--) {
+			tempstr = equation2.substr(x, 1);
+			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
+				break;
+			}
+			portion4 += equation2.substr(x, 1);
+		}
+	}
+	replaceAll(equation2, reverse(portion4) + "%", "c.percent(" + reverse(portion4) + ")");
 	return equation2;
 }
 int main(int argc, char *argv[]) {
@@ -132,8 +133,8 @@ int main(int argc, char *argv[]) {
 	cout << "| ################################### | + | ######  |" << endl;
 	cout << "| ################################### |___| ######  |" << endl;
 	cout << "|___________________________________________________|" << endl;
-	while (true) {
-		fstream fo;
+	for (int x = 0;;x++) {
+		ofstream fo;
 		fo.open("calcfile.cpp");
 		string equation;
 		cin >> equation;
@@ -144,13 +145,23 @@ int main(int argc, char *argv[]) {
 		fo << "#include <cstring>" << endl;
 		fo << "#include \"calculatorsci.cpp\"" << endl << endl;
 		fo << "using namespace std;" << endl << endl;
-		fo << "calculator c;" << endl << endl;
+		fo << "string duplicateStr(string str, int num) {" << endl;
+		fo << "\tstring newStr = str;" << endl;
+		fo << "\tfor (int x = 0; x < num-1; x++) {" << endl;
+		fo << "\t\tnewStr += str;" << endl;
+		fo << "\t}" << endl;
+		fo << "\treturn newStr;" << endl;
+		fo << "}" << endl;
 		fo << "int main(int argc, char *argv[]) {" << endl;
+		fo << "\tcalculator c;" << endl;
 		fo << "\tdouble answer = " << equation << ";" << endl;
+		fo << "\tc.Ans = " << equation << ";" << endl;
+		fo << "\tint len = std::to_string(answer).size();" << endl;
+		fo << "\tcout << c.Ans << endl;" << endl;
 		fo << "\tcout << \"_____________________________________________________\" << endl;" << endl;
 		fo << "\tcout << \"| _________________________________________________ |\" << endl;" << endl;
 		fo << "\tcout << \"| |                                               | |\" << endl;" << endl;
-		fo << "\tcout << \"| |                                          \" << answer << \"     | |\" << endl;" << endl;
+		fo << "\tcout << \"| |\" << duplicateStr(\" \", 47-len) << std::to_string(answer) << \"| |\" << endl;" << endl;
 		fo << "\tcout << \"| |_______________________________________________| |\" << endl;" << endl;
 		fo << "\tcout << \"|                                                   |\" << endl;" << endl;
 		fo << "\tcout << \"| ################################################  |\" << endl;" << endl;
