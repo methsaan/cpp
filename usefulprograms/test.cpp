@@ -64,3 +64,8 @@ string encrypt(string equation) {
 	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
 	return equation2;
 }
+int main(int argc, char *argv[]){
+	cout << c.Ans << endl;
+	c.Ans = 23;
+	cout << c.Ans << endl;
+}

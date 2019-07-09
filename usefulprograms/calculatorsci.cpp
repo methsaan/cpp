@@ -7,6 +7,7 @@ class calculator {
 	public:
 		const double PI = 3.141592653589793238;
 		const double e = 2.71828182846;
+		double Ans = 0;
 		double sine(double angle) {
 			return sin(angle*PI/180);
 		}
