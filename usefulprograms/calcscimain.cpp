@@ -51,14 +51,14 @@ bool contains_digit(string s) {
 string encrypt(string equation) {
 	string equation2 = equation;
 	replaceAll(equation2, "e", "c.e");
-	replaceAll(equation2, "Ans", "c.Ans");
+	replaceAll(equation2, "Ans", "c.getAns()");
 	replaceAll(equation2, "PI", "c.PI");
 	replaceAll(equation2, "x", "*");
 	replaceAll(equation2, "Sin", "c.sine");
 	replaceAll(equation2, "Cos", "c.cosine");
 	replaceAll(equation2, "Tan", "c.tangent");
 	replaceAll(equation2, "log", "c.logarithm");
-	replaceAll(equation2, "sqrt", "c.sqrt");
+	replaceAll(equation2, "Sqrt", "c.squareroot");
 	string portion;
 	string portion2;
 	string portion3;
@@ -105,6 +105,8 @@ string encrypt(string equation) {
 }
 int main(int argc, char *argv[]) {
 	calculator c;
+	system("clear");
+	string equationlist[1000];
 	cout << "_____________________________________________________" << endl;
 	cout << "| _________________________________________________ |" << endl;
 	cout << "| |                                               | |" << endl;
@@ -140,6 +142,7 @@ int main(int argc, char *argv[]) {
 		cin >> equation;
 		system("clear");
 		equation = encrypt(equation);
+		equationlist[x] = equation;
 		fo << "#include <iostream>" << endl;
 		fo << "#include <cmath>" << endl;
 		fo << "#include <cstring>" << endl;
@@ -154,14 +157,13 @@ int main(int argc, char *argv[]) {
 		fo << "}" << endl;
 		fo << "int main(int argc, char *argv[]) {" << endl;
 		fo << "\tcalculator c;" << endl;
-		fo << "\tdouble answer = " << equation << ";" << endl;
-		fo << "\tc.Ans = " << equation << ";" << endl;
+		fo << "\tc.setAns(" << (x > 0 ? equationlist[x-1] : "0") << ");" << endl;
+		fo << "\tdouble answer = " << equationlist[x] << ";" << endl;
 		fo << "\tint len = std::to_string(answer).size();" << endl;
-		fo << "\tcout << c.Ans << endl;" << endl;
 		fo << "\tcout << \"_____________________________________________________\" << endl;" << endl;
 		fo << "\tcout << \"| _________________________________________________ |\" << endl;" << endl;
 		fo << "\tcout << \"| |                                               | |\" << endl;" << endl;
-		fo << "\tcout << \"| |\" << duplicateStr(\" \", 47-len) << std::to_string(answer) << \"| |\" << endl;" << endl;
+		fo << "\tcout << \"| |\" << duplicateStr(\" \", 46-len) << std::to_string(answer) << \" | |\" << endl;" << endl;
 		fo << "\tcout << \"| |_______________________________________________| |\" << endl;" << endl;
 		fo << "\tcout << \"|                                                   |\" << endl;" << endl;
 		fo << "\tcout << \"| ################################################  |\" << endl;" << endl;

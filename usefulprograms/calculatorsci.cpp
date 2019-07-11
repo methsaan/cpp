@@ -4,10 +4,11 @@
 using namespace std;
 
 class calculator {
+	private:
+		double Ans = 0;
 	public:
 		const double PI = 3.141592653589793238;
 		const double e = 2.71828182846;
-		double Ans = 0;
 		double sine(double angle) {
 			return sin(angle*PI/180);
 		}
@@ -35,5 +36,11 @@ class calculator {
 				result *= x+1;
 			}
 			return result;
+		}
+		void setAns(double num) {
+			Ans = num;
+		}
+		double getAns() {
+			return Ans;
 		}
 };
