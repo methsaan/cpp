@@ -1,15 +1,13 @@
 #include <iostream>
-#include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <fstream>
+
+using namespace std;
 
 int main(int argc, char **argv){
 	printf("'c' to create new to do list, 'k' to keep original list: ");
 	char option = getchar();
-	if (option == 'c') {
-		FILE *clearfile = fopen("taskfile", "w");
-		fclose(clearfile);
-	}
 	char task[3000];
 	int numOfTasks = 0;
 	getchar();
@@ -22,10 +20,10 @@ int main(int argc, char **argv){
 			system("cat taskfile");
 		}else {
 			if (option == 'c') {
-				FILE *fp = fopen("taskfile", "a");
+				fstream fo;
 				numOfTasks++;
-				fprintf(fp, "%d %s", numOfTasks, task);
-				fclose(fp);
+				fo << numOfTasks << " " << task << endl;
+				fo.close();
 			}else {
 				printf("Can't add task\n");
 			}
