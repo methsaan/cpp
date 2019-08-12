@@ -5,11 +5,29 @@
 
 using namespace std;
 
+int countlines(string filename) {
+	FILE *fp = fopen(filename.c_str(), "r");
+	int ch = 0;
+	int lines = 0;
+	if (fp == NULL) {
+		return 0;
+	}
+	lines++;
+	while ((ch = fgetc(fp)) != EOF) {
+		if (ch == '\n') {
+			lines++;
+		}
+	}
+	fclose(fp);
+	return lines;
+}
+
 int main(int argc, char **argv){
 	printf("'c' to create new to do list, 'k' to keep original list: ");
 	char option = getchar();
 	char task[3000];
-	int numOfTasks = 0;
+	string fname = "taskfile";
+	int numOfTasks = countlines(fname);
 	getchar();
 	while (1) {
 		printf("Enter task: ");
@@ -20,10 +38,10 @@ int main(int argc, char **argv){
 			system("cat taskfile");
 		}else {
 			if (option == 'c') {
-				fstream fo;
+				FILE *fp = fopen("taskfile", "a");
+				fprintf(fp, "%d %s", numOfTasks, task);
 				numOfTasks++;
-				fo << numOfTasks << " " << task << endl;
-				fo.close();
+				fclose(fp);
 			}else {
 				printf("Can't add task\n");
 			}

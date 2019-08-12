@@ -36,18 +36,12 @@
 
 using namespace std;
 
-double log2(double num) {
-	return log(num) / log(2);
-}
-int decToBinary(int decimal) {
-	string binary = "";
-	string digits[] = {"0", "1"};
-	int numOfDigits = (int)log2(decimal);
-	for (int x = 0; x < numOfDigits; x++) {
-		binary += digits[1]
-	}
-	return stoi(binary);
-}
-
 int main(int argc, char *argv[]) {
+	int binaryNumbers[100];
+	for (int x = 0; x < 100; x++) {
+		string binarystr = "0000000";
+		for (int y = 0; y < 7; y++) {
+			binarystr.substr(y, 1);
+		}
+	}
 }
