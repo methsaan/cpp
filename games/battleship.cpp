@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <cstdio>
 
 using namespace std;
 
@@ -17,35 +18,28 @@ int main(int argc, char *argv[]) {
 			p2shot[i][j] = ".";
 		}
 	}
+	cout << "P1: Enter ship coordinates:" << endl;
+	while (x > 0 && x < 8 && y > 0 && y < 8) {
+		cin >> x >> y;
+		p1ships[x-1][y-1] = "V";
+	}
+	cout << "P2: Enter ship coordinates:" << endl;
+	while (x > 0 && x < 8 && y > 0 && y < 8) {
+		cin >> x >> y;
+		p2ships[x-1][y-1] = "V";
+	}
 	while (1) {
 		cout << "P1: Enter coordinate: ";
-		cin.ignore(1, '(');
-		cin >> x;
-		cin.ignore(1, ',');
-		cin.ignore(1, ' ');
-		cin >> y;
-		cin.ignore(')');
+		cin >> x >> y;
 		p1shot[x-1][y-1] = "#";
-		cout << "P2: Enter coordinate: ";
-		cin.ignore(1, '(');
-		cin >> x;
-		cin.ignore(1, ',');
-		cin.ignore(1, ' ');
-		cin >> y;
-		cin.ignore(')');
-		p2shot[x-1][y-1] = "#";
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				cout << p1shot[i][j];
-			}
-			cout << endl;
+		if (p2ships[x-1][y-1] == "V") {
+			p2ships[x-1][y-1] = "#";
 		}
-		cout << endl;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				cout << p2shot[i][j];
-			}
-			cout << endl;
+		cout << "P2: Enter coordinate: ";
+		cin >> x >> y;
+		p2shot[x-1][y-1] = "#";
+		if (p1ships[x-1][y-1] == "V") {
+			p1ships[x-1][y-1] = "#";
 		}
 	}
 }
