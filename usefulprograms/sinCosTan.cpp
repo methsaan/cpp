@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
 	string angle0opposite;
 	string function;
 	double functionAns;
+	double angle;
 	cout << "Enter side 1: ";
 	cin >> side1;
 	cout << "Enter side 2: ";
@@ -25,6 +26,7 @@ int main(int argc, char *argv[]) {
 		}else {
 			functionAns = side2/hypotenuse;
 		}
+		angle = asin(functionAns)*(180/M_PI);
 	}else if (function == "cos") {
 		if (angle0opposite == "side1") {
 			functionAns = side2/hypotenuse;
@@ -38,6 +40,8 @@ int main(int argc, char *argv[]) {
 			functionAns = side2/side1;
 		}
 	}
-	cout << functionAns << endl;
-	cout << atan(functionAns)*(180/M_PI) << endl;
+	if (function == "sin") {
+		cout << "Angle 0: " << angle << endl;
+	}
+	cout << function << "(0) = " << functionAns << endl;
 }
