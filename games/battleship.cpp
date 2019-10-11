@@ -23,22 +23,36 @@ int main(int argc, char *argv[]) {
 		cin >> x >> y;
 		p1ships[x-1][y-1] = "V";
 	}
+	system("clear");
 	cout << "P2: Enter ship coordinates:" << endl;
 	while (x > 0 && x < 8 && y > 0 && y < 8) {
 		cin >> x >> y;
 		p2ships[x-1][y-1] = "V";
 	}
+	system("clear");
 	while (1) {
 		cout << "P1: Enter coordinate: ";
 		cin >> x >> y;
-		p1shot[x-1][y-1] = "#";
-		if (p2ships[x-1][y-1] == "V") {
-			p2ships[x-1][y-1] = "#";
+		if (p1shot[x-1][y-1] != "#") {
+			p1shot[x-1][y-1] = "#";
+			if (p2ships[x-1][y-1] == "V") {
+				cout << "Hit" << endl;
+				p2ships[x-1][y-1] = "#";
+			}else {
+				cout << "Miss" << endl;
+			}
+		}else {
+			cout << "Already shot" << endl;
+		}
+		if (p2shot[x-1][y-1] != "#") {
+			p1shot[x-1][y-1] = "#";
+			if (p2ships[x-1][y-1] == "V"
 		}
 		cout << "P2: Enter coordinate: ";
 		cin >> x >> y;
 		p2shot[x-1][y-1] = "#";
 		if (p1ships[x-1][y-1] == "V") {
+			cout << "Hit" << endl;
 			p1ships[x-1][y-1] = "#";
 		}
 	}
