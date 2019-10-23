@@ -19,13 +19,14 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	cout << "P1: Enter ship coordinates:" << endl;
-	while (x > 0 && x < 8 && y > 0 && y < 8) {
+	while (x != -1) {
 		cin >> x >> y;
 		p1ships[x-1][y-1] = "V";
 	}
 	system("clear");
+	x = y = 1;
 	cout << "P2: Enter ship coordinates:" << endl;
-	while (x > 0 && x < 8 && y > 0 && y < 8) {
+	while (x != -1) {
 		cin >> x >> y;
 		p2ships[x-1][y-1] = "V";
 	}
@@ -44,16 +45,35 @@ int main(int argc, char *argv[]) {
 		}else {
 			cout << "Already shot" << endl;
 		}
-		if (p2shot[x-1][y-1] != "#") {
-			p1shot[x-1][y-1] = "#";
-			if (p2ships[x-1][y-1] == "V"
+		cout << "Player 2 look away";
+		for (long int x = 0; x < 500000000; x++) {
+			;
+		}
+		cout << "  1 2 3 4 5 6 7 8\n";
+		for (int i = 0; i < 8; i++) {
+			cout << i+1 << " ";
+			for (int j = 0; j < 8; j++) {
+				cout << p1ships[i][j] << " ";
+			}
+			cout << "\n";
 		}
 		cout << "P2: Enter coordinate: ";
 		cin >> x >> y;
-		p2shot[x-1][y-1] = "#";
-		if (p1ships[x-1][y-1] == "V") {
-			cout << "Hit" << endl;
-			p1ships[x-1][y-1] = "#";
+		if (p2shot[x-1][y-1] != "#") {
+			p2shot[x-1][y-1] = "#";
+			if (p1ships[x-1][y-1] == "V") {
+				cout << "Hit" << endl;
+				p1ships[x-1][y-1] = "#";
+			}
+		}else {
+			cout << "Already shot" << endl;
+		}
+		cout << "  1 2 3 4 5 6 7 8\n";
+		for (int i = 0; i < 8; i++) {
+			cout << i+1 << " ";
+			for (int j = 0; j < 8; j++) {
+				cout << p2ships[i][j] << " ";
+			}
 		}
 	}
 }
