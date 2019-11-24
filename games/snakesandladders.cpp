@@ -34,7 +34,7 @@ int main(int argc, char **argv){
 	int snakeland[] = {4, 11, 23, 45, 24, 88};
 	int ladderland[] = {13, 37, 84, 58, 74, 100};
 	const int max = 100;
-	int excess;
+	int excess
 	while (1) {
 		temp = (rand()%6)+1;
 		cout << "Player 2: Press enter to roll\n";
