@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 			p1ships[x-1][y-1] = "V";
 		}
 	} while (x != -1);
-	cout << "Ho\n";
+	system("clear");
 	x = y = 1;
 	cout << "P2: Enter ship coordinates:" << endl;
 	do {
@@ -94,6 +94,8 @@ int main(int argc, char *argv[]) {
 			if (p1ships[x-1][y-1] == "V") {
 				cout << "Hit" << endl;
 				p1ships[x-1][y-1] = "#";
+			}else {
+				cout << "Miss" << endl;
 			}
 		}else {
 			cout << "Already shot" << endl;
