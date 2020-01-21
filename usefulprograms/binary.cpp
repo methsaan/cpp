@@ -1,28 +1,35 @@
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 #include <string>
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	int placevalues[] = {0, 0, 0, 0, 0, 0, 0, 0};
+	int placevalues[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int decimal;
-	cout << "Enter decimal value: ";
+	cout << "Enter decimal value (max 131071): ";
 	cin >> decimal;
-	int y = 7;
-	int z = 7;
+	if (decimal > 131071) {
+		cout << "Too large\n";
+		return 0;
+	}
 	for (int x = 0; x < decimal; x++) {
-		int y = 7;
-		placevalues[y] += 1;
-		if (placevalues[y] == 2) {
-			placevalues[y] = 0;
-			placevalues[y-1] += 1;
-		} else {
-			break;
+		placevalues[17]++;
+		for (int y = 17; y > 1; y--) {
+			if (placevalues[y] == 2) {
+				placevalues[y] = 0;
+				placevalues[y-1] += 1;
+			}else {
+				break;
+			}
 		}
 	}
-	for (int x = 0; x < 8; x++) {
-		cout << placevalues[x];
+	long int decBinary;
+	string binstr;
+	for (int x = 0; x < 18; x++) {
+		binstr += to_string(placevalues[x]);
 	}
-	cout << endl;
+	decBinary = stol(binstr);
+	cout << decBinary << endl;
 }
