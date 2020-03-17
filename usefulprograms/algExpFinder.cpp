@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	string equation;
 	if (inc[0] == inc[1] && inc[1] == inc[2] && inc[2] == inc[3] && inc[3] == inc[4]) {
 		patternType = "Linear";
-		int intercept = y[0] - x[0]*inc[0];
+		int intercept = y[0]-x[0]*inc[0];
 		if (inc[0] == 0 && intercept == 0) {
 			equation = "y = 0";
 		} else if (inc[0] == 1 && intercept == 0) {
@@ -32,9 +32,11 @@ int main(int argc, char *argv[]) {
 		} else if (inc[0] == 0 && intercept != 0) {
 			equation = "y = " + to_string(intercept);
 		} else if (inc[0] == 1 && intercept != 0) {
-			equation = "y = x " + (intercept < 0 ? "- " : "+ ") + to_string(abs(intercept));
+			string s = (intercept < 0 ? "- " : "+ ");
+			equation = "y = x " + s + to_string(abs(intercept));
 		} else if (inc[0] == -1 && intercept != 0) {
-			equation = "y = -x " + (intercept < 0 ? "- " : "+ ") + to_string(abs(intercept));
+			string s = (intercept < 0 ? "- " : "+ ");
+			equation = "y = -x " + s + to_string(abs(intercept));
 		} else {
 			equation = "y = " + to_string(inc[0]) + "x " + (intercept < 0 ? "- " : "+ ") + to_string(abs(intercept));
 		}
