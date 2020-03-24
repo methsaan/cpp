@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	if (function == "sin") {
-		cout << "Angle 0: " << angle << endl;
+		cout << "Angle 0: " << angle << "°" << endl;
 	}
 	cout << function << "(0) = " << functionAns << endl;
 }
