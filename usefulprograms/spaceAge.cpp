@@ -4,6 +4,17 @@
 
 using namespace std;
 
+int findIndex(string arr[], string str, int len) {
+	int i = 0;
+	while (i < len) {
+		if (arr[i] == str) {
+			break;
+		}
+		i++;
+	}
+	return i;
+}
+
 double minToDay(double day, double hour, double minute) {
 	return day + (hour/24.0) + (minute/1440.0);
 }
@@ -17,6 +28,6 @@ int main(int argc, char *argv[]) {
 	string planet(argv[2]);
 	cout << "Number of earth days in " << numOfDays << " " << planet << " days: \n";
 	string planets[] = {"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
-	double oneDay[] = {minToDay(58, 15, 30), minToDay(116, 18, 0), minToDay(1, 0, 0), minToDay(1, 0, 37), minToDay(0, 9, 56), minToDay(0, 10, 42), minToDay(0, 17, 14), minToDay(0, 16, 6)};
-	cout << oneDay[0] << endl;
+	double oneDay[] = {minToDay(58, 15, 30), minToDay(116, 18, 0), minToDay(0, 23, 56), minToDay(1, 0, 37), minToDay(0, 9, 56), minToDay(0, 10, 42), minToDay(0, 17, 14), minToDay(0, 16, 6)};
+	cout << oneDay[findIndex(planets, planet, 8)]*numOfDays << endl;
 }
