@@ -1,7 +1,20 @@
 #include <iostream>
 #include <cmath>
+#include <cstring>
+#include <cfenv>
+#pragma STDC FENV_ACCESS ON
 
 using namespace std;
+
+int tempLog(int number, int base) {
+	int bTemp = base;
+	int power = 1;
+	while (bTemp < number) {
+		bTemp *= bTemp;
+		power++;
+	}
+	return power;
+}
 
 int main(int argc, char *argv[]) {
 	int x[] = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -12,10 +25,14 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < 7; i++) {
 		inc[i] = y[i+1] - y[i];
 	}
-	int inc2[7];
-	for (int i = 0; i < 7; i++) {
-		inc2[i] = inc[i+1] - inc[i];
+	int loglist[8];
+	for (int i = 0; i < 8; i++) {
+		loglist[i] = i < 3 ? std::log10(y[i])/std::log10(i) : tempLog(y[i], i);
 	}
+	for (int a = 0; a < 8; a++) {
+		cout << loglist[a] << " ";
+	}
+	cout << endl;
 	string patternType;
 	string equation;
 	if (inc[0] == inc[1] && inc[1] == inc[2] && inc[2] == inc[3] && inc[3] == inc[4]) {
@@ -40,8 +57,9 @@ int main(int argc, char *argv[]) {
 		} else {
 			equation = "y = " + to_string(inc[0]) + "x " + (intercept < 0 ? "- " : "+ ") + to_string(abs(intercept));
 		}
-	}else if (inc2[0] <= inc2[1] && inc2[1] <= inc2[2] && inc2[2] <= inc2[3] && inc2[3] <= inc2[4]) {
+	} else if (loglist[3] == loglist[4] && loglist[4] == loglist[5] && loglist[5] == loglist[6] && loglist[6] == loglist[7]) {
 		patternType = "Exponential";
+		
 	}
 	cout << "Pattern type: " << patternType << endl;
 	cout << "Equation: " << equation << endl;
