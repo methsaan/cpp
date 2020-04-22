@@ -26,8 +26,8 @@ int main(int argc, char *argv[]) {
 	// 12*mercury = (12*15) * earth
 	double numOfDays = atof(argv[1]);
 	string planet(argv[2]);
-	cout << "Number of earth days in " << numOfDays << " " << planet << " days: \n";
+	cout << "Number of earth days in " << numOfDays << " " << planet << " days:";
 	string planets[] = {"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
-	double oneDay[] = {minToDay(58, 15, 30), minToDay(116, 18, 0), minToDay(0, 23, 56), minToDay(1, 0, 37), minToDay(0, 9, 56), minToDay(0, 10, 42), minToDay(0, 17, 14), minToDay(0, 16, 6)};
+	double oneDay[] = {minToDay(58, 15, 30), minToDay(243, 0, 0), minToDay(0, 23, 56), minToDay(1, 0, 37), minToDay(0, 9, 56), minToDay(0, 10, 42), minToDay(0, 17, 14), minToDay(0, 16, 6)};
 	cout << oneDay[findIndex(planets, planet, 8)]*numOfDays << endl;
 }
