@@ -25,11 +25,11 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	long int decBinary;
+	long long int decBinary;
 	string binstr;
 	for (int x = 0; x < 18; x++) {
 		binstr += to_string(placevalues[x]);
 	}
-	decBinary = stol(binstr);
+	decBinary = stoll(binstr);
 	cout << decBinary << endl;
 }
