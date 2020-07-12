@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
 	fo << "\treturn " << function.substr(function.find("=")+1, function.size()-(function.find("=")+1)) << ";" << endl;
 	fo << "}" << endl;
 	fo << "int main(int argc, char *argv[]) {" << endl;
-	for (int x = 1; x < argc; x++) {
-		fo << "\tcout << f(" << argv[x] << ") << endl;" << endl;
+	for (int x = atoi(argv[1]); x <= atoi(argv[2]); x++) {
+		fo << "\tcout << " << x << " << \" | \" << f(" << x << ") << endl;" << endl;
 	}
 	fo << "}" << endl;
 	fo.close();
