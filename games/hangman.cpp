@@ -36,10 +36,11 @@ int main(){
 	}
 	char strikes[wordlen+2];
 	strikes[0] = '{';
-	for (int x = 1; x < wordlen; x++){
+	for (int x = 1; x < wordlen+1; x++){
 		strikes[x] = '.';
 	}
 	strikes[wordlen+1] = '}';
+	printarr(wordlen+1, "", strikes, "", "");
 	int strike = 0;
 	bool won = true;
 	system("clear");
