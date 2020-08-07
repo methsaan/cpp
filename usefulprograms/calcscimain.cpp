@@ -33,6 +33,7 @@ int stringIndex(string str, string substring) {
 	if (found != string::npos) {
 		return found;
 	}
+	return -1;
 }
 bool is_number(std::string& s) {
 	std::string::const_iterator it = s.begin();
@@ -49,7 +50,7 @@ bool contains_digit(string s) {
 	return 0;
 }
 string encrypt(string equation) {
-	string equation2 = equation;
+	string equation2 = "0 + (" + equation + ")";
 	replaceAll(equation2, "e", "c.e");
 	replaceAll(equation2, "Ans", "c.getAns()");
 	replaceAll(equation2, "PI", "c.PI");
