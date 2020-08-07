@@ -40,7 +40,6 @@ int main(){
 		strikes[x] = '.';
 	}
 	strikes[wordlen+1] = '}';
-	printarr(wordlen+1, "", strikes, "", "");
 	int strike = 0;
 	bool won = true;
 	system("clear");
