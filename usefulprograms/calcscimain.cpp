@@ -65,20 +65,16 @@ string encrypt(string equation) {
 	string portion3;
 	string portion4;
 	string tempstr;
+
+	// REWRITE OPERATORS
+
 	if (contains(equation2, "^")) {
-		for (int x = stringIndex(equation2, "^")-1;; x--) {
-			tempstr = equation2.substr(x, 1);
-			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
-				break;
+		string leftStr = "";
+		int leftIdx = stringIndex(equation2, "^")-2;
+		if (equation2.substr(leftIdx, 1) == ")") {
+			for (int x = leftIdx; stringIndex(equation2, x+1) == "("; x--) {
+				leftStr += equation2.substr(leftIdx, 1);
 			}
-			portion += equation2.substr(x, 1);
-		}
-		for (int x = stringIndex(equation2, "^")+1;; x++) {
-			tempstr = equation2.substr(x, 1);
-			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
-				break;
-			}
-			portion2 += equation2.substr(x, 1);
 		}
 	}
 	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
