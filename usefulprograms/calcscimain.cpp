@@ -69,12 +69,15 @@ string encrypt(string equation) {
 	// REWRITE OPERATORS
 
 	if (contains(equation2, "^")) {
+		string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 		string leftStr = "";
 		int leftIdx = stringIndex(equation2, "^")-2;
 		if (equation2.substr(leftIdx, 1) == ")") {
 			for (int x = leftIdx; stringIndex(equation2, x+1) == "("; x--) {
 				leftStr += equation2.substr(leftIdx, 1);
 			}
+		} else if (keywords.contains(equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
+			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
 		}
 	}
 	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
