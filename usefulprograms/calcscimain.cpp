@@ -66,18 +66,20 @@ string encrypt(string equation) {
 	string portion4;
 	string tempstr;
 
-	// REWRITE OPERATORS
+	// rewrite operators
 
 	if (contains(equation2, "^")) {
 		string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 		string leftStr = "";
+		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 		if (equation2.substr(leftIdx, 1) == ")") {
 			for (int x = leftIdx; stringIndex(equation2, x+1) == "("; x--) {
-				leftStr += equation2.substr(leftIdx, 1);
+				leftStr += equation2.substr(x, 1);
 			}
-		} else if (keywords.contains(equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
+		} else if (std::find(std::begin(keywords), std::end(keywords), equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
+		} else if (std::find(std::begin(numbers), std::end(numbers), equation2.substr(leftIdx, 1)) {
 		}
 	}
 	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
