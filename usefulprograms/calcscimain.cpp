@@ -60,29 +60,30 @@ string encrypt(string equation) {
 	replaceAll(equation2, "Tan", "c.tangent");
 	replaceAll(equation2, "log", "c.logarithm");
 	replaceAll(equation2, "Sqrt", "c.squareroot");
-	string portion;
-	string portion2;
-	string portion3;
-	string portion4;
-	string tempstr;
 
-	// rewrite operators
+	string tempStr = "";
 
 	if (contains(equation2, "^")) {
 		string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 		string leftStr = "";
+		string rightStr = "";
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		int leftIdx = stringIndex(equation2, "^")-2;
+		int leftIdx = stringIndex(equation2, "^")-1;
 		if (equation2.substr(leftIdx, 1) == ")") {
-			for (int x = leftIdx; stringIndex(equation2, x+1) == "("; x--) {
+			for (int x = leftIdx; equation2.substr(x, 1) == "("; x--) {
 				leftStr += equation2.substr(x, 1);
 			}
-		} else if (std::find(std::begin(keywords), std::end(keywords), equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
+			leftStr = reverse(leftStr);
+		}else if (std::find(std::begin(keywords), std::end(keywords), equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
-		} else if (std::find(std::begin(numbers), std::end(numbers), equation2.substr(leftIdx, 1)) {
+		}else if (std::find(std::begin(numbers), std::end(numbers), equation2.substr(leftIdx, 1))) {
+			for (int x = leftIdx; std::find(std::begin(numbers), std::end(numbers), equation2.substr(x, 1)); x--) {
+				leftStr += equation2.substr(x, 1);
+			}
 		}
+		equation2 = leftStr;
+		
 	}
-	replaceAll(equation2, reverse(portion) + "^" + portion2, "pow(" + reverse(portion) + "," + portion2 + ")");
 	if (contains(equation2, "!")) {
 		for (int x = stringIndex(equation2, "!")-1;; x--) {
 			tempstr = equation2.substr(x, 1);
@@ -92,7 +93,6 @@ string encrypt(string equation) {
 			portion3 += equation2.substr(x, 1);
 		}
 	}
-	replaceAll(equation2, reverse(portion3) + "!", "c.factorial(" + reverse(portion3) + ")");
 	if (contains(equation2, "%")) {
 		for (int x = stringIndex(equation2, "%")-1;; x--) {
 			tempstr = equation2.substr(x, 1);
@@ -102,7 +102,6 @@ string encrypt(string equation) {
 			portion4 += equation2.substr(x, 1);
 		}
 	}
-	replaceAll(equation2, reverse(portion4) + "%", "c.percent(" + reverse(portion4) + ")");
 	return equation2;
 }
 int main(int argc, char *argv[]) {
