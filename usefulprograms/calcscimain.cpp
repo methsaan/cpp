@@ -80,7 +80,10 @@ string encrypt(string equation) {
 			for (int x = leftIdx; std::find(std::begin(numbers), std::end(numbers), equation2.substr(x, 1)); x--) {
 				leftStr += equation2.substr(x, 1);
 			}
+			leftStr = reverse(leftStr);
 		}
+		int rightIdx = stringIndex(equation2, "^")+2;
+		if (equation2.substr(rightIdx, 1) //------------------------------------------- RIGHT IDX -------------------------------------------------------------
 		equation2 = leftStr;
 		
 	}
