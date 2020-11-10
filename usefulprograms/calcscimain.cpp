@@ -82,8 +82,12 @@ string encrypt(string equation) {
 			}
 			leftStr = reverse(leftStr);
 		}
-		int rightIdx = stringIndex(equation2, "^")+2;
-		if (equation2.substr(rightIdx, 1) //------------------------------------------- RIGHT IDX -------------------------------------------------------------
+		int rightIdx = stringIndex(equation2, "^")+1;
+		if (equation2.substr(rightIdx, 1) == "(") {
+			for (int x = rightIdx; equation2.substr(x, 1) == ")"; x++) {
+				rightStr += equation2.substr(x, 1);
+			}
+		}
 		equation2 = leftStr;
 		
 	}
