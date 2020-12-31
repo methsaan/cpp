@@ -15,6 +15,15 @@ string reverse(string str) {
 	}
 	return str2;
 }
+bool in_array(string value, string *array) {
+	int size = (*array).size();
+	for (int i = 0; i < size; i++) {
+		if (value == array[i]) {
+			return true;
+		}
+	}
+	return false;
+}
 int contains(string str, string substring) {
 	if (str.find(substring) != std::string::npos) {
 		return 1;
@@ -74,7 +83,7 @@ string encrypt(string equation) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
-		}else if (std::find(std::begin(keywords), std::end(keywords), equation2.substr(stringIndex(equation2, "c"), leftIdx))) {
+		}else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx), keywords)) {
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
 		}else if (std::find(std::begin(numbers), std::end(numbers), equation2.substr(leftIdx, 1))) {
 			for (int x = leftIdx; std::find(std::begin(numbers), std::end(numbers), equation2.substr(x, 1)); x--) {
@@ -87,119 +96,126 @@ string encrypt(string equation) {
 			for (int x = rightIdx; equation2.substr(x, 1) == ")"; x++) {
 				rightStr += equation2.substr(x, 1);
 			}
+		}else if (in_array(equation2.substr(stringIndex(equation2, "c"), equation2.length()), keywords)) {
+			rightStr = equation2.substr(stringIndex(equation2, "c"), equation2.length());
 		}
 		equation2 = leftStr;
-		
+		cout << leftStr << endl;
+		cout << rightStr << endl;
 	}
-	if (contains(equation2, "!")) {
-		for (int x = stringIndex(equation2, "!")-1;; x--) {
-			tempstr = equation2.substr(x, 1);
-			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
-				break;
-			}
-			portion3 += equation2.substr(x, 1);
-		}
-	}
-	if (contains(equation2, "%")) {
-		for (int x = stringIndex(equation2, "%")-1;; x--) {
-			tempstr = equation2.substr(x, 1);
-			if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
-				break;
-			}
-			portion4 += equation2.substr(x, 1);
-		}
-	}
+	//if (contains(equation2, "!")) {
+	//	for (int x = stringIndex(equation2, "!")-1;; x--) {
+	//		tempstr = equation2.substr(x, 1);
+	//		if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
+	//			break;
+	//		}
+	//		portion3 += equation2.substr(x, 1);
+	//	}
+	//}
+	//if (contains(equation2, "%")) {
+	//	for (int x = stringIndex(equation2, "%")-1;; x--) {
+	//		tempstr = equation2.substr(x, 1);
+	//		if ((!is_number(tempstr)) && (equation2.substr(x, 1) != ".")) {
+	//			break;
+	//		}
+	//		portion4 += equation2.substr(x, 1);
+	//	}
+	//}
 	return equation2;
 }
 int main(int argc, char *argv[]) {
-	calculator c;
-	system("clear");
-	string equationlist[1000];
-	cout << "_____________________________________________________" << endl;
-	cout << "| _________________________________________________ |" << endl;
-	cout << "| |                                               | |" << endl;
-	cout << "| |                                             0 | |" << endl;
-	cout << "| |_______________________________________________| |" << endl;
-	cout << "|                                                   |" << endl;
-	cout << "| ################################################  |" << endl;
-	cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
-	cout << "| |   | |   | |   | |   | |   | |   | |   | ######  |" << endl;
-	cout << "| |PI | |Sin| |Log| | ( | | ) | | % | |CE | ######  |" << endl;
-	cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
-	cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
-	cout << "| |   | |   | | __| |   | |   | |   | |   | ######  |" << endl;
-	cout << "| | e | |Tan| |V  | | 1 | | 2 | | 3 | | / | ######  |" << endl;
-	cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
-	cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
-	cout << "| |   | |   | |   | |   | |   | |   | |   | ######  |" << endl;
-	cout << "| |Ans| |Cos| |x^y| | 4 | | 5 | | 6 | | x | ######  |" << endl;
-	cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
-	cout << "|  ___               ___   ___   ___   ___  ######  |" << endl;
-	cout << "| |   | ##########  |   | |   | |   | |   | ######  |" << endl;
-	cout << "| |x! | ##########  | 7 | | 8 | | 9 | | - | ######  |" << endl;
-	cout << "| |___| ##########  |___| |___| |___| |___| ######  |" << endl;
-	cout << "|       ##########                     ___  ######  |" << endl;
-	cout << "| ################################### |   | ######  |" << endl;
-	cout << "| ################################### | + | ######  |" << endl;
-	cout << "| ################################### |___| ######  |" << endl;
-	cout << "|___________________________________________________|" << endl;
-	for (int x = 0;;x++) {
-		ofstream fo;
-		fo.open("calcfile.cpp");
-		string equation;
-		cin >> equation;
-		system("clear");
-		equation = encrypt(equation);
-		equationlist[x] = equation;
-		fo << "#include <iostream>" << endl;
-		fo << "#include <cmath>" << endl;
-		fo << "#include <cstring>" << endl;
-		fo << "#include \"calculatorsci.cpp\"" << endl << endl;
-		fo << "using namespace std;" << endl << endl;
-		fo << "string duplicateStr(string str, int num) {" << endl;
-		fo << "\tstring newStr = str;" << endl;
-		fo << "\tfor (int x = 0; x < num-1; x++) {" << endl;
-		fo << "\t\tnewStr += str;" << endl;
-		fo << "\t}" << endl;
-		fo << "\treturn newStr;" << endl;
-		fo << "}" << endl;
-		fo << "int main(int argc, char *argv[]) {" << endl;
-		fo << "\tcalculator c;" << endl;
-		fo << "\tc.setAns(" << (x > 0 ? equationlist[x-1] : "0") << ");" << endl;
-		fo << "\tdouble answer = " << equationlist[x] << ";" << endl;
-		fo << "\tint len = std::to_string(answer).size();" << endl;
-		fo << "\tcout << \"_____________________________________________________\" << endl;" << endl;
-		fo << "\tcout << \"| _________________________________________________ |\" << endl;" << endl;
-		fo << "\tcout << \"| |                                               | |\" << endl;" << endl;
-		fo << "\tcout << \"| |\" << duplicateStr(\" \", 46-len) << std::to_string(answer) << \" | |\" << endl;" << endl;
-		fo << "\tcout << \"| |_______________________________________________| |\" << endl;" << endl;
-		fo << "\tcout << \"|                                                   |\" << endl;" << endl;
-		fo << "\tcout << \"| ################################################  |\" << endl;" << endl;
-		fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |   | |   | |   | |   | |   | |   | |   | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |PI | |Sin| |Log| | ( | | ) | | % | |CE | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
-		fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |   | |   | | __| |   | |   | |   | |   | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| | e | |Tan| |V  | | 1 | | 2 | | 3 | | / | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
-		fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |   | |   | |   | |   | |   | |   | |   | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |Ans| |Cos| |x^y| | 4 | | 5 | | 6 | | x | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
-		fo << "\tcout << \"|  ___               ___   ___   ___   ___  ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |   | ##########  |   | |   | |   | |   | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |x! | ##########  | 7 | | 8 | | 9 | | - | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| |___| ##########  |___| |___| |___| |___| ######  |\" << endl;" << endl;
-		fo << "\tcout << \"|       ##########                     ___  ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| ################################### |   | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| ################################### | + | ######  |\" << endl;" << endl;
-		fo << "\tcout << \"| ################################### |___| ######  |\" << endl;" << endl;
-		fo << "\tcout << \"|___________________________________________________|\" << endl;" << endl;
-		fo << "}" << endl;
-		fo.close();
-		system("g++ calcfile.cpp");
-		system("./a.out");
-		system("g++ calcscimain.cpp");
-	}
+	string equation;
+	cout << "Enter equation: ";
+	cin >> equation;
+	cout << encrypt(equation) << endl;
+	//calculator c;
+	//system("clear");
+	//string equationlist[1000];
+	//cout << "_____________________________________________________" << endl;
+	//cout << "| _________________________________________________ |" << endl;
+	//cout << "| |                                               | |" << endl;
+	//cout << "| |                                             0 | |" << endl;
+	//cout << "| |_______________________________________________| |" << endl;
+	//cout << "|                                                   |" << endl;
+	//cout << "| ################################################  |" << endl;
+	//cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
+	//cout << "| |   | |   | |   | |   | |   | |   | |   | ######  |" << endl;
+	//cout << "| |PI | |Sin| |Log| | ( | | ) | | % | |CE | ######  |" << endl;
+	//cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
+	//cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
+	//cout << "| |   | |   | | __| |   | |   | |   | |   | ######  |" << endl;
+	//cout << "| | e | |Tan| |V  | | 1 | | 2 | | 3 | | / | ######  |" << endl;
+	//cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
+	//cout << "|  ___   ___   ___   ___   ___   ___   ___  ######  |" << endl;
+	//cout << "| |   | |   | |   | |   | |   | |   | |   | ######  |" << endl;
+	//cout << "| |Ans| |Cos| |x^y| | 4 | | 5 | | 6 | | x | ######  |" << endl;
+	//cout << "| |___| |___| |___| |___| |___| |___| |___| ######  |" << endl;
+	//cout << "|  ___               ___   ___   ___   ___  ######  |" << endl;
+	//cout << "| |   | ##########  |   | |   | |   | |   | ######  |" << endl;
+	//cout << "| |x! | ##########  | 7 | | 8 | | 9 | | - | ######  |" << endl;
+	//cout << "| |___| ##########  |___| |___| |___| |___| ######  |" << endl;
+	//cout << "|       ##########                     ___  ######  |" << endl;
+	//cout << "| ################################### |   | ######  |" << endl;
+	//cout << "| ################################### | + | ######  |" << endl;
+	//cout << "| ################################### |___| ######  |" << endl;
+	//cout << "|___________________________________________________|" << endl;
+	//for (int x = 0;;x++) {
+	//	ofstream fo;
+	//	fo.open("calcfile.cpp");
+	//	string equation;
+	//	cin >> equation;
+	//	system("clear");
+	//	equation = encrypt(equation);
+	//	equationlist[x] = equation;
+	//	fo << "#include <iostream>" << endl;
+	//	fo << "#include <cmath>" << endl;
+	//	fo << "#include <cstring>" << endl;
+	//	fo << "#include \"calculatorsci.cpp\"" << endl << endl;
+	//	fo << "using namespace std;" << endl << endl;
+	//	fo << "string duplicateStr(string str, int num) {" << endl;
+	//	fo << "\tstring newStr = str;" << endl;
+	//	fo << "\tfor (int x = 0; x < num-1; x++) {" << endl;
+	//	fo << "\t\tnewStr += str;" << endl;
+	//	fo << "\t}" << endl;
+	//	fo << "\treturn newStr;" << endl;
+	//	fo << "}" << endl;
+	//	fo << "int main(int argc, char *argv[]) {" << endl;
+	//	fo << "\tcalculator c;" << endl;
+	//	fo << "\tc.setAns(" << (x > 0 ? equationlist[x-1] : "0") << ");" << endl;
+	//	fo << "\tdouble answer = " << equationlist[x] << ";" << endl;
+	//	fo << "\tint len = std::to_string(answer).size();" << endl;
+	//	fo << "\tcout << \"_____________________________________________________\" << endl;" << endl;
+	//	fo << "\tcout << \"| _________________________________________________ |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |                                               | |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |\" << duplicateStr(\" \", 46-len) << std::to_string(answer) << \" | |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |_______________________________________________| |\" << endl;" << endl;
+	//	fo << "\tcout << \"|                                                   |\" << endl;" << endl;
+	//	fo << "\tcout << \"| ################################################  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |   | |   | |   | |   | |   | |   | |   | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |PI | |Sin| |Log| | ( | | ) | | % | |CE | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |   | |   | | __| |   | |   | |   | |   | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| | e | |Tan| |V  | | 1 | | 2 | | 3 | | / | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|  ___   ___   ___   ___   ___   ___   ___  ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |   | |   | |   | |   | |   | |   | |   | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |Ans| |Cos| |x^y| | 4 | | 5 | | 6 | | x | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |___| |___| |___| |___| |___| |___| |___| ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|  ___               ___   ___   ___   ___  ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |   | ##########  |   | |   | |   | |   | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |x! | ##########  | 7 | | 8 | | 9 | | - | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| |___| ##########  |___| |___| |___| |___| ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|       ##########                     ___  ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| ################################### |   | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| ################################### | + | ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"| ################################### |___| ######  |\" << endl;" << endl;
+	//	fo << "\tcout << \"|___________________________________________________|\" << endl;" << endl;
+	//	fo << "}" << endl;
+	//	fo.close();
+	//	system("g++ calcfile.cpp");
+	//	system("./a.out");
+	//	system("g++ calcscimain.cpp");
+	//}
 }
