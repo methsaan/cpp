@@ -38,9 +38,10 @@ void replaceAll(std::string& subject, const std::string& search, const std::stri
 	}
 }
 int stringIndex(string str, string substring) {
-	size_t found = str.find(substring); 
-	if (found != string::npos) {
-		return found;
+	for (int x = 0; x < str.length(); x++) {
+		if (str.at(x) == substring.at(0)) {
+			return x;
+		}
 	}
 	return -1;
 }
@@ -73,20 +74,29 @@ string encrypt(string equation) {
 	string tempStr = "";
 
 	if (contains(equation2, "^")) {
+		cout << "contains exponent sign" << endl;
 		string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 		string leftStr = "";
 		string rightStr = "";
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-1;
+
+		cout << equation2 << endl;
+		cout << equation2.length() << endl;
+		cout << leftIdx << endl;
+
 		if (equation2.substr(leftIdx, 1) == ")") {
+			cout << "Left side contains brackets" << endl;
 			for (int x = leftIdx; equation2.substr(x, 1) == "("; x--) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
 		}else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx), keywords)) {
+			cout << "Left side contains keyword" << endl;
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
-		}else if (std::find(std::begin(numbers), std::end(numbers), equation2.substr(leftIdx, 1))) {
-			for (int x = leftIdx; std::find(std::begin(numbers), std::end(numbers), equation2.substr(x, 1)); x--) {
+		}else if (in_array(equation2.substr(leftIdx, 1), numbers)) {
+			cout << "Left side contains number" << endl;
+			for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers); x--) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
@@ -100,8 +110,6 @@ string encrypt(string equation) {
 			rightStr = equation2.substr(stringIndex(equation2, "c"), equation2.length());
 		}
 		equation2 = leftStr;
-		cout << leftStr << endl;
-		cout << rightStr << endl;
 	}
 	//if (contains(equation2, "!")) {
 	//	for (int x = stringIndex(equation2, "!")-1;; x--) {
@@ -126,7 +134,7 @@ string encrypt(string equation) {
 int main(int argc, char *argv[]) {
 	string equation;
 	cout << "Enter equation: ";
-	cin >> equation;
+	getline(cin, equation);
 	cout << encrypt(equation) << endl;
 	//calculator c;
 	//system("clear");
