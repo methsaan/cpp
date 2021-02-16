@@ -81,10 +81,11 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		cout << equation2 << endl;
-		cout << equation2.length() << endl;
-		cout << leftIdx << endl;
-		cout << equation2.substr(leftIdx, 1) << endl;
+		cout << equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1) << endl;
+		cout << in_array("haho", keywords) << endl;
+		cout << in_array("c.e", keywords) << endl;
+		cout << in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords) << endl;
+		cout << endl;
 
 		if (equation2.substr(leftIdx, 1) == ")") {
 			cout << "Left side contains brackets" << endl;
@@ -93,7 +94,7 @@ string encrypt(string equation) {
 			}
 			leftStr = reverse(leftStr);
 			cout << leftStr << endl;
-		}else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx), keywords)) {
+		}else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords)) {
 			cout << "Left side contains keyword" << endl;
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
 		}else if (in_array(equation2.substr(leftIdx, 1), numbers)) {
