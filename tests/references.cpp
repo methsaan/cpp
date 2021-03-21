@@ -9,4 +9,6 @@ int main(int argc, char *argv[]) {
 	x = 20;
 	cout << x << " " << y << endl;
 	cout << &x << " " << &y << endl;
+	y = 30;
+	cout << x << " " << y << endl;
 }
