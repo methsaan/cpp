@@ -18,7 +18,7 @@ string reverse(string str) {
 // -------------------------------------------------------------
 // FIX IN_ARRAY FUNCTION
 // -------------------------------------------------------------
-bool in_array(string value, string *array) {
+bool in_array(const string array[], const string size, string *array) {
 	int size = (*array).size();
 	for (int i = 0; i < size; i++) {
 		if (value == array[i]) {
@@ -153,10 +153,13 @@ string encrypt(string equation) {
 	return equation2;
 }
 int main(int argc, char *argv[]) {
-	string equation;
-	cout << "Enter equation: ";
-	getline(cin, equation);
-	cout << encrypt(equation) << endl;
+	//string equation;
+	//cout << "Enter equation: ";
+	//getline(cin, equation);
+	//cout << encrypt(equation) << endl;
+	string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+	cout << in_array("3", a) << endl;
+	cout << in_array("t", a) << endl;
 	//calculator c;
 	//system("clear");
 	//string equationlist[1000];
