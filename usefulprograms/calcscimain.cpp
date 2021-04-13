@@ -15,9 +15,6 @@ string reverse(string str) {
 	}
 	return str2;
 }
-// -------------------------------------------------------------
-// FIX IN_ARRAY FUNCTION
-// -------------------------------------------------------------
 
 bool in_array(string value, string *array, int length) {
 	for (int i = 0; i < length; i++) {
@@ -85,45 +82,27 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		//cout << in_array("c.e", keywords) << endl;
-		//cout << in_array("c.getAns()", keywords) << endl;
-		//cout << in_array("c.PI", keywords) << endl;
-		//cout << in_array("c.sine", keywords) << endl;
-		//cout << in_array("c.cosine", keywords) << endl;
-		//cout << in_array("c.tangent", keywords) << endl;
-		//cout << in_array("c.logarithm", keywords) << endl;
-		//cout << in_array("c.squareroot", keywords) << endl << endl;
-		//cout << in_array(".", numbers) << endl;
-		//cout << in_array("0", numbers) << endl;
-		//cout << in_array("1", numbers) << endl;
-		//cout << in_array("2", numbers) << endl;
-		//cout << in_array("3", numbers) << endl;
-		//cout << in_array("4", numbers) << endl;
-		//cout << in_array("5", numbers) << endl;
-		//cout << in_array("6", numbers) << endl;
-		//cout << in_array("7", numbers) << endl;
-		//cout << in_array("8", numbers) << endl;
-		//cout << in_array("9", numbers) << endl;
-		//cout << "Done" << endl;
+		cout << in_array(equation2.substr(leftIdx, 1), numbers, 11) << endl;
+		cout << "waaaaaaaaaaaa" << endl;
 
-		//if (equation2.substr(leftIdx, 1) == ")") { // works
-		//	cout << "Left side contains brackets" << endl;
-		//	for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
-		//		leftStr += equation2.substr(x, 1);
-		//	}
-		//	leftStr = reverse(leftStr);
-		//	cout << leftStr << endl;
-		//}else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords)) {
-		//	cout << "Left side contains keyword" << endl;
-		//	leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
-		//}else if (in_array(equation2.substr(leftIdx, 1), numbers)) {
-		//	cout << "Left side contains number" << endl;
-		//	for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers); x--) {
-		//		leftStr += equation2.substr(x, 1);
-		//	}
-		//	leftStr = reverse(leftStr);
-		//}
-		leftStr = "";
+		if (equation2.substr(leftIdx, 1) == ")") { // works
+			cout << "Left side contains brackets" << endl;
+			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
+				leftStr += equation2.substr(x, 1);
+			}
+			leftStr = reverse(leftStr);
+			cout << leftStr << endl;
+		} else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) {
+			cout << "Left side contains keyword" << endl;
+			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
+		// index error
+		} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
+			cout << "Left side contains number" << endl;
+			//for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
+			//	leftStr += equation2.substr(x, 1);
+			//}
+			//leftStr = reverse(leftStr);
+		}
 		cout << "No errors left side" << endl;
 		//int rightIdx = stringIndex(equation2, "^")+1;
 		//if (equation2.substr(rightIdx, 1) == "(") {
@@ -156,10 +135,10 @@ string encrypt(string equation) {
 	return equation2;
 }
 int main(int argc, char *argv[]) {
-	//string equation;
-	//cout << "Enter equation: ";
-	//getline(cin, equation);
-	//cout << encrypt(equation) << endl;
+	string equation;
+	cout << "Enter equation: ";
+	getline(cin, equation);
+	cout << encrypt(equation) << endl;
 	string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 	cout << in_array("3", a, 26) << endl;
 	cout << in_array("t", a, 26) << endl;
