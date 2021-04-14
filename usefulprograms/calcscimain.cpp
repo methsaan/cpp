@@ -82,8 +82,10 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		cout << in_array(equation2.substr(leftIdx, 1), numbers, 11) << endl;
-		cout << "waaaaaaaaaaaa" << endl;
+		cout << equation2 << endl;
+		cout << equation2.length() << endl;
+		cout << leftIdx << endl;
+		cout << equation2.substr(leftIdx, 1) << endl;
 
 		if (equation2.substr(leftIdx, 1) == ")") { // works
 			cout << "Left side contains brackets" << endl;
@@ -95,14 +97,16 @@ string encrypt(string equation) {
 		} else if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) {
 			cout << "Left side contains keyword" << endl;
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
+		}
+		leftStr = "88888 + 555555";
 		// index error
-		} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
-			cout << "Left side contains number" << endl;
+		//} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
+			//cout << "Left side contains number" << endl;
 			//for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
 			//	leftStr += equation2.substr(x, 1);
 			//}
 			//leftStr = reverse(leftStr);
-		}
+		//}
 		cout << "No errors left side" << endl;
 		//int rightIdx = stringIndex(equation2, "^")+1;
 		//if (equation2.substr(rightIdx, 1) == "(") {
