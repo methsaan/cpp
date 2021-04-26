@@ -82,53 +82,29 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		cout << equation2.substr(leftIdx, 1) << endl;
-		int a = stringIndex(equation2, "c");
-		// if equation contains "c" ...
-		cout << a << endl;
-		cout << "kpokpokpokpokpokpok" << endl;
-
-		/*
-		if (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) {
-			cout << "Left side contains keyword" << endl;
-			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx);
-		} else if (equation2.substr(leftIdx, 1) == ")") { // works
-			cout << "Left side contains brackets" << endl;
+		if (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8) : 0)) : 0) { // contains c before ^
+			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1);
+		} else if (equation2.substr(leftIdx, 1) == ")") {
 			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
-			cout << leftStr << endl;
-		}
-		*/
-
-		if (1 == 2) {
-			cout << "poopftsmll" << endl;
-		} else if (equation2.substr(leftIdx, 1) == ")") { // works
-			cout << "Left side contains brackets" << endl;
-			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
+		} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
+			cout << "Left side contains number" << endl;
+			for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
-			cout << leftStr << endl;
 		}
-		cout << "WAAAAAAAAAAAAA" << endl;
-		// index error
-		//} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
-			//cout << "Left side contains number" << endl;
-			//for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
-			//	leftStr += equation2.substr(x, 1);
-			//}
-			//leftStr = reverse(leftStr);
-		//}
 		cout << "No errors left side" << endl;
-		//int rightIdx = stringIndex(equation2, "^")+1;
-		//if (equation2.substr(rightIdx, 1) == "(") {
+		int rightIdx = stringIndex(equation2, "^")+1;
+
+		//if (contains(equation2, "c") ? in_array(equation2.substr(stringIndex(equation2, "c"), equation2.length()), keywords)) {
+		//	rightStr = equation2.substr(stringIndex(equation2, "c"), equation2.length());
+		//} else if (equation2.substr(rightIdx, 1) == "(") {
 		//	for (int x = rightIdx; equation2.substr(x, 1) == ")"; x++) {
 		//		rightStr += equation2.substr(x, 1);
 		//	}
-		//}else if (in_array(equation2.substr(stringIndex(equation2, "c"), equation2.length()), keywords)) {
-		//	rightStr = equation2.substr(stringIndex(equation2, "c"), equation2.length());
 		//}
 		equation2 = leftStr;
 	}
@@ -157,10 +133,6 @@ int main(int argc, char *argv[]) {
 	cout << "Enter equation: ";
 	getline(cin, equation);
 	cout << encrypt(equation) << endl;
-	string a[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-	cout << in_array("3", a, 26) << endl;
-	cout << in_array("t", a, 26) << endl;
-	cout << in_array("b", a, 26) << endl;
 	//calculator c;
 	//system("clear");
 	//string equationlist[1000];
