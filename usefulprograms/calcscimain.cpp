@@ -82,7 +82,7 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		if (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8) : 0)) : 0) { // contains c before ^
+		if (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) : 0) : 0) { // contains c before ^
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1);
 		} else if (equation2.substr(leftIdx, 1) == ")") {
 			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
