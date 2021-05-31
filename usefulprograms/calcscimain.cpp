@@ -82,15 +82,23 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		if (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) : 0) : 0) { // contains c before ^
+		//int contains_c_beforeExp = (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) : 0) : 0);
+
+		// contains c right before exp
+
+		int contains_c_beforeExp = (contains(equation2, "c") ? (stringIndex(equation2, "c") < leftIdx) : 0) && ();
+		cout << contains_c_beforeExp << endl;
+		if (contains_c_beforeExp) {
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1);
-		} else if (equation2.substr(leftIdx, 1) == ")") {
+		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
+
+			// detect bracket pairs
+
 			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
 				leftStr += equation2.substr(x, 1);
 			}
 			leftStr = reverse(leftStr);
 		} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
-			cout << "Left side contains number" << endl;
 			for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
 				leftStr += equation2.substr(x, 1);
 			}
