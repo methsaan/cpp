@@ -60,6 +60,17 @@ bool contains_digit(string s) {
 	}
 	return 0;
 }
+int* stringIndexes(string str, string charact) {
+	static int indexes[20];
+	int cnt = 0;
+	for (int x = 0; x < str.length(); x++) {
+		if (str.at(x) == charact.at(0)) {
+			indexes[cnt++] = x;
+		}
+	}
+	return indexes;
+}
+
 string encrypt(string equation) {
 	string equation2 = "0 + (" + equation + ")";
 	replaceAll(equation2, "e", "c.e");
@@ -82,12 +93,15 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		//int contains_c_beforeExp = (contains(equation2, "c") ? ((stringIndex(equation2, "c") < leftIdx) ? (in_array(equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1), keywords, 8)) : 0) : 0);
-
-		// contains c right before exp
-
-		int contains_c_beforeExp = (contains(equation2, "c") ? (stringIndex(equation2, "c") < leftIdx) : 0) && ();
+		int *indexes = stringIndexes(equation2, "c");
+		int contains_c_beforeExp;
+		for (int x = 0; x < 20; x++) {
+			if (indexes[x] > leftIdx) {
+				int contains_c_beforeExp = indexes[x-1];
+			}
+		}
 		cout << contains_c_beforeExp << endl;
+
 		if (contains_c_beforeExp) {
 			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1);
 		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
@@ -141,6 +155,7 @@ int main(int argc, char *argv[]) {
 	cout << "Enter equation: ";
 	getline(cin, equation);
 	cout << encrypt(equation) << endl;
+
 	//calculator c;
 	//system("clear");
 	//string equationlist[1000];
