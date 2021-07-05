@@ -94,16 +94,23 @@ string encrypt(string equation) {
 		int leftIdx = stringIndex(equation2, "^")-2;
 
 		int *indexes = stringIndexes(equation2, "c");
-		int contains_c_beforeExp;
-		for (int x = 0; x < 20; x++) {
-			if (indexes[x] > leftIdx) {
-				int contains_c_beforeExp = indexes[x-1];
+		int contains_c_beforeExp = 0;
+		int cIdx = 0;
+		for (int x = 0; x < 5; x++) {
+			cIdx = indexes[x];
+			if ((indexes[x] > leftIdx) || (indexes[x] <= indexes[x-1])) {
+				contains_c_beforeExp = 1;
+				break;
 			}
 		}
-		cout << contains_c_beforeExp << endl;
+		for (int x = cIdx; x < leftIdx; x++) {
+			if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/")) {
+				contains_c_beforeExp = 0;
+			}
+		}
 
 		if (contains_c_beforeExp) {
-			leftStr = equation2.substr(stringIndex(equation2, "c"), leftIdx-stringIndex(equation2, "c")+1);
+			leftStr = equation2.substr(cIdx, leftIdx-cIdx+1);
 		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
 
 			// detect bracket pairs
