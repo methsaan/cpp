@@ -62,10 +62,11 @@ bool contains_digit(string s) {
 }
 int* stringIndexes(string str, string charact) {
 	static int indexes[20];
-	int cnt = 0;
+	int cnt = 1;
 	for (int x = 0; x < str.length(); x++) {
 		if (str.at(x) == charact.at(0)) {
 			indexes[cnt++] = x;
+			indexes[0] = cnt;
 		}
 	}
 	return indexes;
@@ -93,18 +94,25 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
+		// run program, type 4 + PI - 3 - Sqrt(9) + e ^ 5 - 4 x 4 + e
+		cout << equation2 << endl << endl;
 		int *indexes = stringIndexes(equation2, "c");
+		cout << indexes[0] << endl;
+		cout << indexes[indexes[0]-1] << endl << endl;
+		for (int x = 1; x < indexes[0]; x++) {
+			cout << indexes[x] << endl;
+		}
 		int contains_c_beforeExp = 0;
-		int cIdx = 0;
-		for (int x = 0; x < 5; x++) {
-			cIdx = indexes[x];
-			if ((indexes[x] > leftIdx) || (indexes[x] <= indexes[x-1])) {
-				contains_c_beforeExp = 1;
+		int cIdx = -1;
+		for (int x = 1; x < indexes[0]; x++) {
+			if ((indexes[x] < leftIdx) && (indexes[x+1] > leftIdx)) {
+				cIdx = indexes[x];
 				break;
 			}
 		}
+		cout << "haho " << cIdx << " haho" << endl;
 		for (int x = cIdx; x < leftIdx; x++) {
-			if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/")) {
+			if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/") || (equation2.substr(x, 1) == "%")) {
 				contains_c_beforeExp = 0;
 			}
 		}
