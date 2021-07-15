@@ -71,6 +71,15 @@ int* stringIndexes(string str, string charact) {
 	}
 	return indexes;
 }
+string nextWord(string str, int idx) {
+	string word = "";
+	string tempstr = str.substr(idx, 1);
+	for (int x = idx; tempstr != " "; x++) {
+		word += tempstr;
+		tempstr = str.substr(x+1, 1);
+	}
+	return word;
+}
 
 string encrypt(string equation) {
 	string equation2 = "0 + (" + equation + ")";
@@ -105,12 +114,18 @@ string encrypt(string equation) {
 		int contains_c_beforeExp = 0;
 		int cIdx = -1;
 		for (int x = 1; x < indexes[0]; x++) {
+			cout << "indexes[x] (" << indexes[x] << ") - leftIdx (" << leftIdx << ") - indexes[x+1] (" << indexes[x+1] << ")" << endl;
 			if ((indexes[x] < leftIdx) && (indexes[x+1] > leftIdx)) {
+				cout << "\nindexes[x] (" << indexes[x] << ") < leftIdx (" << leftIdx << ") < indexes[x+1] (" << indexes[x+1] << ")" << endl;
 				cIdx = indexes[x];
 				break;
 			}
 		}
+		if (cIdx != -1) {
+			contains_c_beforeExp = 1;
+		}
 		cout << "haho " << cIdx << " haho" << endl;
+		cout << nextWord(equation2, cIdx) << endl;
 		for (int x = cIdx; x < leftIdx; x++) {
 			if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/") || (equation2.substr(x, 1) == "%")) {
 				contains_c_beforeExp = 0;
@@ -118,7 +133,8 @@ string encrypt(string equation) {
 		}
 
 		if (contains_c_beforeExp) {
-			leftStr = equation2.substr(cIdx, leftIdx-cIdx+1);
+			cout << "contains_c_beforeExp" << endl;
+			leftStr = nextWord(equation2, cIdx);
 		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
 
 			// detect bracket pairs
