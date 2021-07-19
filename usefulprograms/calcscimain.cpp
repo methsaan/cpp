@@ -103,20 +103,11 @@ string encrypt(string equation) {
 		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int leftIdx = stringIndex(equation2, "^")-2;
 
-		// run program, type 4 + PI - 3 - Sqrt(9) + e ^ 5 - 4 x 4 + e
-		cout << equation2 << endl << endl;
 		int *indexes = stringIndexes(equation2, "c");
-		cout << indexes[0] << endl;
-		cout << indexes[indexes[0]-1] << endl << endl;
-		for (int x = 1; x < indexes[0]; x++) {
-			cout << indexes[x] << endl;
-		}
 		int contains_c_beforeExp = 0;
 		int cIdx = -1;
 		for (int x = 1; x < indexes[0]; x++) {
-			cout << "indexes[x] (" << indexes[x] << ") - leftIdx (" << leftIdx << ") - indexes[x+1] (" << indexes[x+1] << ")" << endl;
 			if ((indexes[x] < leftIdx) && (indexes[x+1] > leftIdx)) {
-				cout << "\nindexes[x] (" << indexes[x] << ") < leftIdx (" << leftIdx << ") < indexes[x+1] (" << indexes[x+1] << ")" << endl;
 				cIdx = indexes[x];
 				break;
 			}
@@ -124,8 +115,6 @@ string encrypt(string equation) {
 		if (cIdx != -1) {
 			contains_c_beforeExp = 1;
 		}
-		cout << "haho " << cIdx << " haho" << endl;
-		cout << nextWord(equation2, cIdx) << endl;
 		for (int x = cIdx; x < leftIdx; x++) {
 			if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/") || (equation2.substr(x, 1) == "%")) {
 				contains_c_beforeExp = 0;
@@ -136,9 +125,6 @@ string encrypt(string equation) {
 			cout << "contains_c_beforeExp" << endl;
 			leftStr = nextWord(equation2, cIdx);
 		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
-
-			// detect bracket pairs
-
 			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
 				leftStr += equation2.substr(x, 1);
 			}
@@ -150,7 +136,18 @@ string encrypt(string equation) {
 			leftStr = reverse(leftStr);
 		}
 		cout << "No errors left side" << endl;
-		int rightIdx = stringIndex(equation2, "^")+1;
+		int rightIdx = stringIndex(equation2, "^")+2;
+
+		if (equation2.substr(rightIdx, 1) == "c") {
+			cout << "Right side contains keyword" << endl;
+			rightStr = nextWord(equation2, rightIdx);
+		} else (equation2.substr(rightIdx, 1) == "(") {
+			string temp = "";
+			for (int x = rightIdx; temp != ")"; x++) {
+				temp = equation.substr(rightIdx, 1);
+				rightIdx += temp;
+			}
+		}
 
 		//if (contains(equation2, "c") ? in_array(equation2.substr(stringIndex(equation2, "c"), equation2.length()), keywords)) {
 		//	rightStr = equation2.substr(stringIndex(equation2, "c"), equation2.length());
@@ -159,7 +156,7 @@ string encrypt(string equation) {
 		//		rightStr += equation2.substr(x, 1);
 		//	}
 		//}
-		equation2 = leftStr;
+		equation2 = rightStr;
 	}
 	//if (contains(equation2, "!")) {
 	//	for (int x = stringIndex(equation2, "!")-1;; x--) {
