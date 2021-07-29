@@ -96,66 +96,88 @@ string encrypt(string equation) {
 	string tempStr = "";
 
 	if (contains(equation2, "^")) {
-		string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
-		string leftStr = "";
-		string rightStr = "";
-		string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		while (contains(equation2, "^")) {
+			string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
+			string leftStr = "";
+			string rightStr = "";
+			string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
-		//--------------------------------------------------------------------- check if exponent is between two parentheses -----------------------------------------------------------------
-
-		int leftIdx = stringIndex(equation2, "^")-2;
-		int rightIdx = stringIndex(equation2, "^")+2;
-
-		int *cIndexes = stringIndexes(equation2, "c");
-		int contains_c_beforeExp = 0;
-		int cIdx = -1;
-		for (int x = 1; x < cIndexes[0]; x++) {
-			if ((cIndexes[x] < leftIdx) && (cIndexes[x+1] > leftIdx)) {
-				cIdx = cIndexes[x];
-				break;
-			}
-		}
-		if (cIdx != -1) {
-			contains_c_beforeExp = 1;
-			for (int x = cIdx; x < leftIdx; x++) {
-				if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/") || (equation2.substr(x, 1) == "%")) {
-					contains_c_beforeExp = 0;
+			int leftParen = 0;
+			for (int x = 0; x < equation2.length(); x++) {
+				if (equation2.substr(x, 1) == "(") {
+					leftParen = x;
 				}
 			}
-		}
+			// --------------------------------- run, type 3 + 24 - 34 ^ PI - (23 - 25) ^ 23 + 25 - 3.24 ^ 3 -----------------------------------------------------------------------------------------------------
+			int leftIdx = stringIndex(equation2, "^")-2;
+			int rightIdx = stringIndex(equation2, "^")+2;
+			if (leftParen) {
+				for (int x = leftParen; x < equation2.length(); x++) {
+					if (equation2.substr(x, 1) == ")") {
+						break;
+					}
+					if (equation2.substr(x, 1) == "^") {
+						leftIdx = x-2;
+						rightIdx = x+2;
+						break;
+					} else {
+						leftIdx = stringIndex(equation2, "^")-2;
+						rightIdx = stringIndex(equation2, "^")+2;
+					}
+				}
+			}
 
-		if (contains_c_beforeExp) {
-			cout << "contains_c_beforeExp" << endl;
-			leftStr = nextWord(equation2, cIdx);
-		} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
-			for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
-				leftStr += equation2.substr(x, 1);
+			int *cIndexes = stringIndexes(equation2, "c");
+			int contains_c_beforeExp = 0;
+			int cIdx = -1;
+			for (int x = 1; x < cIndexes[0]; x++) {
+				if ((cIndexes[x] < leftIdx) && (cIndexes[x+1] > leftIdx)) {
+					cIdx = cIndexes[x];
+					break;
+				}
 			}
-			leftStr = reverse(leftStr);
-		} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
-			for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
-				leftStr += equation2.substr(x, 1);
+			if (cIdx != -1) {
+				contains_c_beforeExp = 1;
+				for (int x = cIdx; x < leftIdx; x++) {
+					if ((equation2.substr(x, 1) == "+") || (equation2.substr(x, 1) == "-") || (equation2.substr(x, 1) == "x") || (equation2.substr(x, 1) == "/") || (equation2.substr(x, 1) == "%")) {
+						contains_c_beforeExp = 0;
+					}
+				}
 			}
-			leftStr = reverse(leftStr);
-		}
 
-		if (equation2.substr(rightIdx, 1) == "c") {
-			cout << "Right side contains keyword" << endl;
-			rightStr = nextWord(equation2, rightIdx);
-		} else if (equation2.substr(rightIdx, 1) == "(") {
-			cout << "Right side contains bracket" << endl;
-			string temp = "";
-			for (int x = rightIdx; temp != ")"; x++) {
-				temp = equation2.substr(x, 1);
-				rightStr += temp;
+			if (contains_c_beforeExp) {
+				cout << "contains_c_beforeExp" << endl;
+				leftStr = nextWord(equation2, cIdx);
+			} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
+				for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
+					leftStr += equation2.substr(x, 1);
+				}
+				leftStr = reverse(leftStr);
+			} else if (in_array(equation2.substr(leftIdx, 1), numbers, 11)) {
+				for (int x = leftIdx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
+					leftStr += equation2.substr(x, 1);
+				}
+				leftStr = reverse(leftStr);
 			}
-		} else if (in_array(equation2.substr(rightIdx, 1), numbers, 11)) {
-			for (int x = rightIdx; in_array(equation2.substr(x, 1), numbers, 11); x++) {
-				rightStr += equation2.substr(x, 1);
-			}
-		}
 
-		equation2 = rightStr;
+			if (equation2.substr(rightIdx, 1) == "c") {
+				cout << "Right side contains keyword" << endl;
+				rightStr = nextWord(equation2, rightIdx);
+			} else if (equation2.substr(rightIdx, 1) == "(") {
+				cout << "Right side contains bracket" << endl;
+				string temp = "";
+				for (int x = rightIdx; temp != ")"; x++) {
+					temp = equation2.substr(x, 1);
+					rightStr += temp;
+				}
+			} else if (in_array(equation2.substr(rightIdx, 1), numbers, 11)) {
+				for (int x = rightIdx; in_array(equation2.substr(x, 1), numbers, 11); x++) {
+					rightStr += equation2.substr(x, 1);
+				}
+			}
+
+			replaceAll(equation2, leftStr + " ^ " + rightStr, "pow(" + leftStr + ", " + rightStr + ")");
+		}
 	}
 	//if (contains(equation2, "!")) {
 	//	for (int x = stringIndex(equation2, "!")-1;; x--) {
