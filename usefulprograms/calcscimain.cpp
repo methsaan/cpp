@@ -176,13 +176,14 @@ string encrypt(string equation) {
 		}
 	}
 	if (contains(equation2, "!")) {
+		// ============================================================================ for loop condition ==================================================================================================================
 		while (contains(equation2, "!")) {
 			string portion = "";
 			int idx = stringIndex(equation2, "!")+1;
-			for (int x = idx; in_array(equation2.substr(x, 1), numbers, 11); x++) {
+			for (int x = idx; equation2.substr(x, 1) != " "; x--) {
 				portion += equation2.substr(x, 1);
 			}
-			replaceAll(equation2, "!" + portion, "logarithm(" + portion + ")");
+			replaceAll(equation2, portion + "!", "factorial(" + portion + ")");
 		}
 	}
 	if (contains(equation2, "%")) {
