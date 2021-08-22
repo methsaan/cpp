@@ -97,8 +97,20 @@ string encrypt(string equation) {
 	string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 	string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
+	if (contains(equation2, "!")) {
+		while (contains(equation2, "!")) {
+			string portion = "";
+			int idx = stringIndex(equation2, "!")-1;
+			for (int x = idx; in_array(equation2.substr(x, 1), numbers, 11); x--) {
+				portion += equation2.substr(x, 1);
+			}
+			portion = reverse(portion);
+			replaceAll(equation2, portion + "!", "c.factorial(" + portion + ")");
+		}
+	}
 	if (contains(equation2, "^")) {
 		while (contains(equation2, "^")) {
+			// ======================================================== keyword followed by brackets - example: c.squareroot(25) ^ 2, c.factorial(4) ^ 3 =======================================================================
 			string leftStr = "";
 			string rightStr = "";
 
@@ -173,17 +185,6 @@ string encrypt(string equation) {
 			}
 
 			replaceAll(equation2, leftStr + " ^ " + rightStr, "pow(" + leftStr + ", " + rightStr + ")");
-		}
-	}
-	if (contains(equation2, "!")) {
-		// ============================================================================ for loop condition ==================================================================================================================
-		while (contains(equation2, "!")) {
-			string portion = "";
-			int idx = stringIndex(equation2, "!")+1;
-			for (int x = idx; equation2.substr(x, 1) != " "; x--) {
-				portion += equation2.substr(x, 1);
-			}
-			replaceAll(equation2, portion + "!", "factorial(" + portion + ")");
 		}
 	}
 	if (contains(equation2, "%")) {
