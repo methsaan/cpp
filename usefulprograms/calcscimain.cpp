@@ -110,7 +110,7 @@ string encrypt(string equation) {
 	}
 	if (contains(equation2, "^")) {
 		while (contains(equation2, "^")) {
-			// ======================================================== keyword followed by brackets - example: c.squareroot(25) ^ 2, c.factorial(4) ^ 3 =======================================================================
+			// ======================================================== fix cIndexes =======================================================================
 			string leftStr = "";
 			string rightStr = "";
 
@@ -141,7 +141,7 @@ string encrypt(string equation) {
 			int *cIndexes = stringIndexes(equation2, "c");
 			int contains_c_beforeExp = 0;
 			int cIdx = -1;
-			for (int x = 1; x < cIndexes[0]; x++) {
+			for (int x = 1; x < sizeof(cIndexes)/sizeof(*cIndexes); x++) {
 				if ((cIndexes[x] < leftIdx) && (cIndexes[x+1] > leftIdx)) {
 					cIdx = cIndexes[x];
 					break;
@@ -155,6 +155,10 @@ string encrypt(string equation) {
 					}
 				}
 			}
+
+			cout << cIndexes[cIdx-1] << endl;
+			cout << cIndexes[cIdx] << endl;
+			cout << cIndexes[cIdx+1] << endl;
 
 			if (contains_c_beforeExp) {
 				leftStr = nextWord(equation2, cIdx);
