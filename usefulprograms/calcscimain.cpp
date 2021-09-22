@@ -97,6 +97,9 @@ string encrypt(string equation) {
 	string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 	string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
+	cout << equation2 << endl;
+	cout << (3 ^ 4) << endl;
+	/*
 	if (contains(equation2, "!")) {
 		while (contains(equation2, "!")) {
 			string portion = "";
@@ -160,9 +163,7 @@ string encrypt(string equation) {
 			cout << cIndexes[cIdx] << endl;
 			cout << cIndexes[cIdx+1] << endl;
 
-			if (contains_c_beforeExp) {
-				leftStr = nextWord(equation2, cIdx);
-			} else if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
+			if (equation2.substr(leftIdx, 1) == ")" && !contains_c_beforeExp) {
 				for (int x = leftIdx; equation2.substr(x+1, 1) != "("; x--) {
 					leftStr += equation2.substr(x, 1);
 				}
@@ -174,9 +175,7 @@ string encrypt(string equation) {
 				leftStr = reverse(leftStr);
 			}
 
-			if (equation2.substr(rightIdx, 1) == "c") {
-				rightStr = nextWord(equation2, rightIdx);
-			} else if (equation2.substr(rightIdx, 1) == "(") {
+			if (equation2.substr(rightIdx, 1) == "(") {
 				string temp = "";
 				for (int x = rightIdx; temp != ")"; x++) {
 					temp = equation2.substr(x, 1);
@@ -206,6 +205,7 @@ string encrypt(string equation) {
 			replaceAll(equation2, portion2 + "%", "percent(" + portion2 + ")");
 		}
 	}
+	*/
 	return equation2;
 }
 int main(int argc, char *argv[]) {
