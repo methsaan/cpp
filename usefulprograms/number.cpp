@@ -28,8 +28,12 @@ class number {
 			number answer(pow(num, num2.num));
 			return answer;
 		}
+		number operator% () {
+			number answer(num/100);
+			return answer;
+		}
 		double num1() {
 			return num;
 		}
-		// test out operations
+		// add word functions (log, sin, cos, tan, sqrt)
 };

@@ -8,6 +8,7 @@ int main() {
 	number numtest2(23);
 	number numtest3 = numtest / numtest2;
 	cout << numtest3.num1() << endl;
-	cout <<  << endl;
+	number ans((*new number(15)) + (*new number(29)));
+	cout << ans.num1() << endl;
 	// find c++ equivalent of "new" in java
 }
