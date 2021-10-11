@@ -96,9 +96,30 @@ string encrypt(string equation) {
 	string tempStr = "";
 	string keywords[] = {"c.e", "c.getAns()", "c.PI", "c.sine", "c.cosine", "c.tangent", "c.logarithm", "c.squareroot"};
 	string numbers[] = {".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	// ------------------------------------------------------------------------- add operators ------------------------------------------------------------------------------------------------------------------
+	string operators[] = {"+", "/", "x", "-"};
 
 	cout << equation2 << endl;
-	cout << (3 ^ 4) << endl;
+	string equationNumbers[20];
+	string equationOperators[20];
+	string tempStr = "";
+	int numCnt = 0;
+	int opCnt = 0;
+	int containsNumOp = 0;
+	for (int x = 0; x < equation2.length(); x++) {
+		while (in_array(equation2.substr(x, 1), numbers, 11)) {
+			tempStr += equation2.substr(x, 1);
+			x++;
+			containsNumOp = 1;
+		}
+		if (containsNumOp == 1) {
+			numbers[numCnt++] = tempStr;
+			containsNumOp = 0;
+			tempStr = "";
+		}
+		while (in_array(equation2.substr(x, 1)
+	}
+
 	/*
 	if (contains(equation2, "!")) {
 		while (contains(equation2, "!")) {
@@ -113,7 +134,6 @@ string encrypt(string equation) {
 	}
 	if (contains(equation2, "^")) {
 		while (contains(equation2, "^")) {
-			// ======================================================== fix cIndexes =======================================================================
 			string leftStr = "";
 			string rightStr = "";
 
