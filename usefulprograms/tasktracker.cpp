@@ -35,7 +35,7 @@ int main(int argc, char **argv){
 	}
 	getchar();
 	while (1) {
-		printf("Enter task: ");
+		printf("Enter task%s: ", option == 'r' ? " ('t' to remove file)" : "");
 		fgets(task, 3000, stdin);
 		if (strcmp(task, "q\n") == 0) {
 			break;

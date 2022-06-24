@@ -18,19 +18,19 @@ int main()
 	cout << "Enter second number: ";
 	cin >> s;
 	if (oper == "add") {
-		cout << "The answer is " << f + s << endl;
+		cout << "Answer: " << f + s << endl;
 	}
 	else if (oper == "sub") {
-		cout << "The answer is " << f - s << endl;
+		cout << "Answer: " << f - s << endl;
 	}
 	else if (oper == "mul") {
-		cout << "The answer is " << f * s << endl;
+		cout << "Answer: " << f * s << endl;
 	}
 	else if (oper == "div") {
-		cout << "The answer is " << f / s << endl;
+		cout << "Answer: " << f / s << endl;
 	}
 	else if (oper == "exp") {
-		cout << "The answer is " << pow(f, s)  << endl;
+		cout << "Answer: " << pow(f, s)  << endl;
 	}
 	else {
 		cout << "Invalid operator\n";

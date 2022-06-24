@@ -24,6 +24,7 @@ int abcGreater(string word1, string word2) {
 			return 1;
 		}
 	}
+	return 0;
 }
 
 int main(int argc, char *argv[]){
